@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hello, World! • A-Frame</title>
+  <meta name="description" content="Hello, World! • A-Frame">
+  <script src="https://autonome.github.io/aframe-ar/aframe.js"></script>
+  <script src="https://autonome.github.io/aframe-ar/camera.js"></script>
+  <style>   
+    html, body, div, a-scene {
+      background-color: transparent;
+    }
+    video, img {
+      width: 100%    !important;
+      max-width: 100%    !important;
+      height: auto   !important;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1000;
+    }
+    .coords {
+      position: absolute;
+      top: 0.1rem;
+      left: 0.1rem;
+      background-color: silver;
+      opacity: 0.5;
+      color: #fff;
+    }
+    .glow {
+      background: #527fa9;
+      box-shadow: inset 0 0 30px 15px #49628a;
+      transition: 500ms ease-in-out;
+    }
+  </style>   
+</head>
+<body>
+  <a-scene>
+
+    <a-camera position="0 1.8 500"></a-camera>
+
+    <a-assets>
+      <a-asset-item id="ducky-obj" src="tc.obj"></a-asset-item>
+    </a-assets>
+  <a-entity>
+  <a-animation
+    attribute="rotation"
+    easing="linear"
+    dur="60000"
+    to="0 360 0"
+    repeat="indefinite">
+  </a-animation>  
+  <a-entity rotation="0 0 25">
+    <a-obj-model
+      src="#ducky-obj"
+      position="0 0 0"
+      rotation="0 0 0"
+      scale="10 10 10"
+      material="color: orange">
+    </a-obj-model>
+	</a-entity>
+</a-entity>
+  </a-scene>
+
+ 
+
+  <video id="inputVideo" autoplay loop></video>
+
+  <div class="coords">
+  </div>
+
+  <script type="text/javascript">
+   
+
+    var vid = document.querySelector('#inputVideo');
+
+    cameraSource.start({
+      videoElement: vid,
+      callback: function() {
+        console.log('videoooo')
+      }
+    });
+    
+   
+  </script>
+
+</body>
+</html>
