@@ -35,40 +35,94 @@
   </style>   
 </head>
 <body>
+
+
   <a-scene>
 
-    <a-camera position="0 1.8 500"></a-camera>
+    <a-camera position="0 1.8 500" look-controls="enabled:false"></a-camera>
 
     <a-assets>
-      <a-asset-item id="ducky-obj" src="tc.obj"></a-asset-item>
+      <a-asset-item id="car-obj" src="BMW_M3_GTR.obj"></a-asset-item>
+       <a-asset-item id="car-mtl" src="BMW_M3_GTR.mtl"></a-asset-item>
+	   
     </a-assets>
-  <a-entity>
-  <a-animation
-    attribute="rotation"
-    easing="linear"
-    dur="60000"
-    to="0 360 0"
-    repeat="indefinite">
-  </a-animation>  
-  <a-entity rotation="0 0 25">
-    <a-obj-model
-      src="#ducky-obj"
-      position="0 0 0"
-      rotation="0 0 0"
-      scale="10 10 10"
-      material="color: orange">
-    </a-obj-model>
-	</a-entity>
-</a-entity>
-  </a-scene>
-
  
+  <a-entity drag-rotate-component>
+    <a-obj-model 
+      src="#car-obj"
+      mtl="#car-mtl"
+      position="0 0 0"
+     
+      scale="0.03 0.03 0.03"
+	>
+    </a-obj-model>
+  </a-entity>
 
+    
+  </a-scene>
+<script>
+   var box=document.querySelector('a-obj-model');
+   box.addEventListener("mouseenter",function(){
+     box.setAttribute("scale",
+	 {
+	    x:0.01,
+		y:0.01,
+		z:0.01
+		});
+	});
+	 </script>
   <video id="inputVideo" autoplay loop></video>
 
   <div class="coords">
   </div>
+<script type="text/javascript">
+/*
+var camera, controls, scene, renderer;
+var dragControls = new THREE.DragControls( objects, camera, renderer.domElement );
+				dragControls.addEventListener( 'dragstart', function ( event ) { controls.enabled = false; } );
+				dragControls.addEventListener( 'dragend', function ( event ) { controls.enabled = true; } );
 
+			*/
+    AFRAME.registerComponent('drag-rotate-component',{
+      schema : { speed : {default:1}},
+      init : function(){
+        this.ifMouseDown = false;
+        this.x_cord = 0;
+        this.y_cord = 0;
+        document.addEventListener('mousedown',this.OnDocumentMouseDown.bind(this));
+        document.addEventListener('mouseup',this.OnDocumentMouseUp.bind(this));
+        document.addEventListener('mousemove',this.OnDocumentMouseMove.bind(this));
+      },
+      OnDocumentMouseDown : function(event){
+        this.ifMouseDown = true;
+        this.x_cord = event.clientX;
+        this.y_cord = event.clientY;
+      },
+      OnDocumentMouseUp : function(){
+        this.ifMouseDown = false;
+      },
+      OnDocumentMouseMove : function(event)
+      {
+        if(this.ifMouseDown)
+        {
+          var temp_x = event.clientX-this.x_cord;
+          var temp_y = event.clientY-this.y_cord;
+          if(Math.abs(temp_y)<Math.abs(temp_x))
+          {
+            this.el.object3D.rotateY(temp_x*this.data.speed/1000);
+          }
+          else
+          {
+            this.el.object3D.rotateX(temp_y*this.data.speed/1000);
+          }
+          this.x_cord = event.clientX;
+          this.y_cord = event.clientY;
+        }
+      }
+    });
+	
+	
+  </script>
   <script type="text/javascript">
    
 
@@ -81,8 +135,7 @@
       }
     });
     
-   
-  </script>
+     </script>
 
 </body>
 </html>
