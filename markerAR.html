@@ -6,13 +6,15 @@
 <body style='margin : 0px; overflow: hidden;'>
 	<a-scene id="scene" embedded artoolkit='sourceType: webcam;'>
 	    <a-assets>
+		<a-asset-item id="avocado" src="https://cdn.rawgit.com/KhronosGroup/glTF-Sample-Models/9176d098/1.0/Avocado/glTF/Avocado.gltf"></a-asset-item>
 	    </a-assets> 
+		<a-entity gltf-model="#avocado" look-controls="reverseMouseDrag:true" scale="0.1 0.1 0.1" position="0 0 0"></a-entity>
+		<!--
      <a-entity position="-0.8 3.5 -2"
            src="#boxTexture" obj-model="obj: url(http://localhost/AR/model/Incense/Incense.obj); 
 		                                mtl: url(http://localhost/AR/model/Incense/Incense.mtl)" scale="0.01 0.01 0.01">
-	
 	 </a-entity>
-                  
+        -->
 	 <a-marker-camera preset='enqos'></a-marker-camera>   
 		
 	</a-scene>
