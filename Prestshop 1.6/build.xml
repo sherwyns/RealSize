@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="mtg" default="build">
+<project name="arview" default="build">
     <target name="build" depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpdox"/>
 
     <target name="clean" unless="clean.done" description="Cleanup build artifacts">
@@ -32,24 +32,10 @@
 	  <apply executable="php" taskname="lint">
 	   <arg value="-l" />
 		  
-
-	   <fileset dir="${basedir}/app/Http/Controllers/">
-		<include name="**/*.php" />
-		<modified />
-	   </fileset>
-
-	   <fileset dir="${basedir}/database/migrations">
+		<fileset dir="${basedir}/arview">
 		<include name="**/*.php" />
 	   </fileset>
 
-	   <fileset dir="${basedir}/app">
-		<include name="**/*.php" />
-	   </fileset>
-
-	   <fileset dir="${basedir}/tests">
-		<include name="**/*.php" />
-	   </fileset>
-	  </apply>
 	 </target>
 
     <target name="phploc" description="Measure project size using PHPLOC">
