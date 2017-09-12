@@ -1,0 +1,27 @@
+#fileInput{
+    opacity: 0;
+    position: absolute;
+    width: 11%;
+    font-size: 1.8em;
+}
+.fileUploadLabel{
+  margin-top:5px; 
+    margin-left: 10%;
+}
+.fileUploadLabel{
+    letter-spacing: .02em;
+    font-size: 1.4em;
+    text-transform: capitalize;    
+}
+#file-add-button{padding: 6px 15px}
+
+#arviewsubmit{
+margin-left: 2%;
+padding: 8px 20px;
+}
+.error{
+    border:1px solid red !important;
+    color:red !important;
+}
+
+.errorTxt{color: red;}

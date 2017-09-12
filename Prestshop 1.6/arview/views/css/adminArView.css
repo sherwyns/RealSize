@@ -1,0 +1,34 @@
+.content{color:red !important;}
+
+#fileInput{
+    opacity: 0;
+    position: absolute;
+    width: 31%;
+   font-size: 2em;
+}
+.fileUploadLabel{
+  margin-top:5px; 
+  font-size: 1.7em;
+}
+
+
+.error{
+    border:1px solid red !important;
+    color:red !important;
+}
+
+.errorTxt{color: red;}
+
+.swal2-confirm{
+    border:1px solid #60ba68 !important;    
+}
+
+.dataTables_filter{
+    display: none;
+}
+
+.search-input-text{
+    width: 50% !important;
+}
+
+
