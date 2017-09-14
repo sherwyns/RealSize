@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="2.6.0">
+<file name="/var/www/html/antarview/arview.php">
+ <error line="1" column="1" severity="warning" message="A file should declare new symbols (classes, functions, constants, etc.) and cause no other side effects, or it should execute logic with side effects, but should not do both. The first symbol is defined on line 28 and the first side effect is on line 22." source="PSR1.Files.SideEffects.FoundWithSymbols"/>
+ <error line="25" column="1" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="28" column="1" severity="error" message="Each class must be in a namespace of at least one level (a top-level vendor name)" source="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+ <error line="32" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="33" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="42" column="86" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="50" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="54" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="59" column="9" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="63" column="1" severity="error" message="Spaces must be used to indent lines; tabs are not allowed" source="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
+ <error line="63" column="5" severity="error" message="Line indented incorrectly; expected at least 8 spaces, found 4" source="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
+ <error line="63" column="5" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="64" column="1" severity="error" message="Spaces must be used to indent lines; tabs are not allowed" source="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
+ <error line="65" column="46" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="68" column="69" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="69" column="63" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="74" column="9" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="75" column="30" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="78" column="9" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="79" column="30" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="85" column="9" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="88" column="9" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="92" column="9" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="102" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="108" column="9" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="130" column="9" severity="error" message="Expected 1 space after FOREACH keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="130" column="9" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="130" column="31" severity="error" message="AS keyword must be lowercase; expected &quot;as&quot; but found &quot;AS&quot;" source="Squiz.ControlStructures.ForEachLoopDeclaration.AsNotLower"/>
+ <error line="130" column="31" severity="error" message="PHP keywords must be lowercase; expected &quot;as&quot; but found &quot;AS&quot;" source="Generic.PHP.LowerCaseKeyword.Found"/>
+ <error line="131" column="17" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="138" column="145" severity="warning" message="Line exceeds 120 characters; contains 145 characters" source="Generic.Files.LineLength.TooLong"/>
+ <error line="141" column="9" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="148" column="60" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="150" column="10" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="152" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="157" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="158" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="161" column="9" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="161" column="54" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="163" column="82" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="164" column="10" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="165" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="170" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="171" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="174" column="9" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="174" column="109" severity="error" message="Blank line found at start of control structure" source="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen"/>
+ <error line="184" column="94" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="187" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="191" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="194" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="195" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="199" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="203" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="207" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="208" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="212" column="137" severity="error" message="TRUE, FALSE and NULL must be lowercase; expected &quot;null&quot; but found &quot;NULL&quot;" source="Generic.PHP.LowerCaseConstant.Found"/>
+ <error line="212" column="141" severity="warning" message="Line exceeds 120 characters; contains 141 characters" source="Generic.Files.LineLength.TooLong"/>
+ <error line="215" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="220" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="221" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="227" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="231" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="235" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="236" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="240" column="9" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="240" column="51" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="248" column="31" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="258" column="10" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="259" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="261" column="1" severity="error" message="Expected 1 blank line at end of file; 2 found" source="PSR2.Files.EndFileNewline.TooMany"/>
+ <error line="261" column="1" severity="error" message="The closing brace for the class must go on the next line after the body" source="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>
+</file>
+<file name="/var/www/html/antarview/getData.php">
+ <error line="7" column="1" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="7" column="32" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="12" column="3" severity="error" message="Expected 1 space after ELSEIF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="12" column="42" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="19" column="5" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="19" column="29" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="20" column="74" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="21" column="33" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="22" column="7" severity="warning" message="Usage of ELSE IF is discouraged; use ELSEIF instead" source="PSR2.ControlStructures.ElseIfDeclaration.NotAllowed"/>
+ <error line="22" column="12" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="22" column="37" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="22" column="39" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="25" column="3" severity="warning" message="Usage of ELSE IF is discouraged; use ELSEIF instead" source="PSR2.ControlStructures.ElseIfDeclaration.NotAllowed"/>
+ <error line="25" column="8" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="25" column="65" severity="error" message="Expected 0 spaces before closing bracket; 1 found" source="PSR2.ControlStructures.ControlStructureSpacing.SpaceBeforeCloseBrace"/>
+ <error line="25" column="66" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="29" column="2" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="30" column="1" severity="error" message="Expected 1 newline at end of file; 0 found" source="PSR2.Files.EndFileNewline.NoneFound"/>
+</file>
+<file name="/var/www/html/antarview/controllers/admin/AdminArViewController.php">
+ <error line="1" column="1" severity="warning" message="A file should declare new symbols (classes, functions, constants, etc.) and cause no other side effects, or it should execute logic with side effects, but should not do both. The first symbol is defined on line 4 and the first side effect is on line 2." source="PSR1.Files.SideEffects.FoundWithSymbols"/>
+ <error line="4" column="1" severity="error" message="Each class must be in a namespace of at least one level (a top-level vendor name)" source="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+ <error line="9" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="10" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="13" column="8" severity="error" message="Line indented incorrectly; expected at least 8 spaces, found 7" source="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
+ <error line="14" column="8" severity="error" message="Line indented incorrectly; expected at least 8 spaces, found 7" source="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
+ <error line="14" column="182" severity="warning" message="Line exceeds 120 characters; contains 182 characters" source="Generic.Files.LineLength.TooLong"/>
+ <error line="15" column="8" severity="error" message="Line indented incorrectly; expected at least 8 spaces, found 7" source="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
+ <error line="16" column="8" severity="error" message="Line indented incorrectly; expected at least 8 spaces, found 7" source="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
+ <error line="21" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="22" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="39" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="43" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="46" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="47" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="51" column="71" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="58" column="30" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="62" column="1" severity="error" message="The closing brace for the class must go on the next line after the body" source="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>
+</file>
+<file name="/var/www/html/antarview/controllers/admin/AdminArViewModel.php">
+ <error line="3" column="1" severity="error" message="Each class must be in a namespace of at least one level (a top-level vendor name)" source="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+ <error line="3" column="23" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="4" column="1" severity="error" message="Expected 0 spaces before opening brace; 1 found" source="PSR2.Classes.ClassDeclaration.SpaceBeforeBrace"/>
+ <error line="10" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="12" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="15" column="140" severity="warning" message="Line exceeds 120 characters; contains 140 characters" source="Generic.Files.LineLength.TooLong"/>
+ <error line="22" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="34" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="36" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="40" column="142" severity="warning" message="Line exceeds 120 characters; contains 142 characters" source="Generic.Files.LineLength.TooLong"/>
+ <error line="42" column="9" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="42" column="28" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="45" column="9" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="45" column="28" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="47" column="10" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="49" column="54" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="52" column="9" severity="error" message="Expected 1 space after FOREACH keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="52" column="41" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="56" column="170" severity="warning" message="Line exceeds 120 characters; contains 177 characters" source="Generic.Files.LineLength.TooLong"/>
+ <error line="56" column="170" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="57" column="51" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="58" column="10" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="61" column="42" severity="error" message="Space after opening parenthesis of function call prohibited" source="PSR2.Methods.FunctionCallSignature.SpaceAfterOpenBracket"/>
+ <error line="61" column="42" severity="error" message="Expected 0 spaces before closing bracket; 1 found" source="PSR2.Methods.FunctionCallSignature.SpaceBeforeCloseBracket"/>
+ <error line="61" column="59" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="62" column="42" severity="error" message="Space after opening parenthesis of function call prohibited" source="PSR2.Methods.FunctionCallSignature.SpaceAfterOpenBracket"/>
+ <error line="62" column="42" severity="error" message="Expected 0 spaces before closing bracket; 1 found" source="PSR2.Methods.FunctionCallSignature.SpaceBeforeCloseBracket"/>
+ <error line="63" column="50" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="66" column="38" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="67" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="73" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="75" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="79" column="133" severity="warning" message="Line exceeds 120 characters; contains 133 characters" source="Generic.Files.LineLength.TooLong"/>
+ <error line="89" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="91" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="102" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="104" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="108" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="113" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="117" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="119" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="120" column="70" severity="error" message="Opening brace should be on a new line" source="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine"/>
+ <error line="122" column="9" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="122" column="9" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="127" column="1" severity="error" message="The closing brace for the class must go on the next line after the body" source="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>
+ <error line="127" column="3" severity="error" message="Expected 1 blank line at end of file; 2 found" source="PSR2.Files.EndFileNewline.TooMany"/>
+</file>
+<file name="/var/www/html/antarview/controllers/admin/AdminFileProcess.php">
+ <error line="1" column="1" severity="warning" message="A file should declare new symbols (classes, functions, constants, etc.) and cause no other side effects, or it should execute logic with side effects, but should not do both. The first symbol is defined on line 4 and the first side effect is on line 2." source="PSR1.Files.SideEffects.FoundWithSymbols"/>
+ <error line="4" column="1" severity="error" message="Each class must be in a namespace of at least one level (a top-level vendor name)" source="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+ <error line="4" column="23" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="5" column="1" severity="error" message="Expected 0 spaces before opening brace; 1 found" source="PSR2.Classes.ClassDeclaration.SpaceBeforeBrace"/>
+ <error line="10" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="15" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="17" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="21" column="9" severity="error" message="Expected 1 space after TRY keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="28" column="13" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="39" column="17" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="39" column="43" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="40" column="21" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="40" column="49" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="46" column="35" severity="error" message="Line indented incorrectly; expected at least 36 spaces, found 34" source="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
+ <error line="49" column="35" severity="error" message="Line indented incorrectly; expected at least 36 spaces, found 34" source="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
+ <error line="50" column="34" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="51" column="30" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="56" column="17" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="56" column="31" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="60" column="17" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="60" column="31" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="63" column="18" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="65" column="17" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="65" column="76" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="70" column="17" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="70" column="31" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="71" column="78" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="72" column="21" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="72" column="63" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="73" column="81" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="74" column="22" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="77" column="126" severity="warning" message="Line exceeds 120 characters; contains 126 characters" source="Generic.Files.LineLength.TooLong"/>
+ <error line="79" column="1" severity="error" message="Blank line found at end of control structure" source="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose"/>
+ <error line="83" column="1" severity="error" message="Blank line found at end of control structure" source="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose"/>
+ <error line="85" column="67" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="87" column="1" severity="error" message="Blank line found at end of control structure" source="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose"/>
+ <error line="91" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="95" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="97" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="98" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="99" column="19" severity="error" message="Expected &quot;function abc(...)&quot;; found &quot;function  abc(...)&quot;" source="Squiz.Functions.FunctionDeclaration"/>
+ <error line="99" column="19" severity="error" message="Expected 1 space after FUNCTION keyword; 2 found" source="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction"/>
+ <error line="101" column="9" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="101" column="34" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="102" column="13" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="102" column="40" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="106" column="25" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="106" column="40" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="113" column="22" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="118" column="10" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="125" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="127" column="7" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="128" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="129" column="19" severity="error" message="Expected &quot;function abc(...)&quot;; found &quot;function  abc(...)&quot;" source="Squiz.Functions.FunctionDeclaration"/>
+ <error line="129" column="19" severity="error" message="Expected 1 space after FUNCTION keyword; 2 found" source="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction"/>
+ <error line="131" column="9" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="131" column="24" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="136" column="10" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="137" column="9" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="137" column="34" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="138" column="13" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="138" column="40" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="142" column="25" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="142" column="40" severity="error" message="Expected 1 space after closing parenthesis; found 0" source="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"/>
+ <error line="149" column="22" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="151" column="17" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="151" column="17" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="155" column="10" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="157" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="162" column="9" severity="error" message="Expected 1 space after IF keyword; 0 found" source="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/>
+ <error line="162" column="9" severity="error" message="Inline control structures are not allowed" source="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+ <error line="163" column="79" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="167" column="6" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="169" column="1" severity="error" message="The closing brace for the class must go on the next line after the body" source="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>
+ <error line="169" column="3" severity="error" message="Expected 1 newline at end of file; 0 found" source="PSR2.Files.EndFileNewline.NoneFound"/>
+</file>
+<file name="/var/www/html/antarview/controllers/hook/displayAdminProductsExtra.php">
+ <error line="3" column="1" severity="error" message="Each class must be in a namespace of at least one level (a top-level vendor name)" source="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+ <error line="3" column="1" severity="error" message="Class name &quot;arviewDisplayAdminProductsExtraController&quot; is not in camel caps format" source="Squiz.Classes.ValidClassName.NotCamelCaps"/>
+ <error line="3" column="48" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="4" column="1" severity="error" message="Expected 0 spaces before opening brace; 1 found" source="PSR2.Classes.ClassDeclaration.SpaceBeforeBrace"/>
+ <error line="12" column="30" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="20" column="8" severity="error" message="Whitespace found at end of line" source="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/>
+ <error line="21" column="8" severity="error" message="Line indented incorrectly; expected at least 8 spaces, found 7" source="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
+ <error line="26" column="1" severity="error" message="Expected 1 blank line at end of file; 2 found" source="PSR2.Files.EndFileNewline.TooMany"/>
+ <error line="26" column="1" severity="error" message="The closing brace for the class must go on the next line after the body" source="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>
+</file>
+</checkstyle>
+

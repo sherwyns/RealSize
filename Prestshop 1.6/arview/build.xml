@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="antarview" default="build">
+
+    <!-- intended to be ran before upload to the CI server -->
+    <target name="pre-upload" depends="phpcs" />
+    
+    <target name="build" depends="prepare,lint, phpcs-ci"/>
+
+    <target name="clean" unless="clean.done" description="Cleanup build artifacts">
+        <delete dir="${basedir}/build/api"/>
+        <delete dir="${basedir}/build/code-browser"/>
+        <delete dir="${basedir}/build/coverage"/>
+        <delete dir="${basedir}/build/logs"/>
+        <delete dir="${basedir}/build/pdepend"/>
+        <property name="clean.done" value="true"/>
+    </target>
+
+    <target name="prepare" unless="prepare.done" depends="clean" description="Prepare for build">
+        <mkdir dir="${basedir}/build/api"/>
+        <mkdir dir="${basedir}/build/code-browser"/>
+        <mkdir dir="${basedir}/build/coverage"/>
+        <mkdir dir="${basedir}/build/logs"/>
+        <mkdir dir="${basedir}/build/pdepend"/>
+        <property name="prepare.done" value="true"/>
+    </target>
+
+	 <target name="lint" description="Perform syntax check of sourcecode files">
+	  <apply executable="php" taskname="lint">
+	   <arg value="-l" />
+
+           <fileset dir="${basedir}/controllers/admin/">
+            <include name="**/*.php" />
+            <modified />
+           </fileset>
+
+           <fileset dir="${basedir}/controllers/hook/">
+            <include name="**/*.php" />
+            <modified />
+           </fileset>          
+          
+           <fileset dir="${basedir}">
+               <include name="**/*.php" />
+               <!-- exclude the tests directory, repeat line below to exclude more -->
+               <exclude name="install/**" />
+               <modified />
+           </fileset>
+
+           <fileset dir="${basedir}">
+               <include name="**/*.php" />
+               <!-- exclude the tests directory, repeat line below to exclude more -->
+               <exclude name="views/**" />
+               <modified />
+           </fileset>          
+        
+           <fileset dir="${basedir}/">
+               <include name="**/*.php" />
+               <modified />
+           </fileset>
+          
+       </apply>
+   </target>
+
+    <target name="phpcs"
+            description="Find coding standard violations using PHP_CodeSniffer and print result in text format">
+        <exec executable="${basedir}/build/tools/phpcs.phar" taskname="phpcs">
+            <arg value="--standard=PSR2"/>
+            <arg value="--extensions=php"/>
+            <arg value="--ignore=${basedir}/views, index.php, ${basedir}/controllers/admin/index.php, ${basedir}/controllers/hook/index.php, ${basedir}/install" />
+            <arg path="${basedir}"/>
+        </exec>
+    </target>
+
+    <target name="phpcs-ci" depends="prepare"
+            description="Find coding standard violations using PHP_CodeSniffer and log result in XML format">
+        <exec executable="${basedir}/build/tools/phpcs.phar"  output="/dev/null" taskname="phpcs">
+            <arg value="--report=checkstyle"/>
+            <arg value="--report-file=${basedir}/build/logs/checkstyle.xml"/>
+            <arg value="--standard=PSR2"/>
+            <arg value="--extensions=php"/>
+            <arg value="--ignore=${basedir}/views, index.php, ${basedir}/controllers/admin/index.php, ${basedir}/controllers/hook/index.php, ${basedir}/install" />
+            <arg path="${basedir}"/>
+        </exec>
+    </target>	
+ 
+</project>
