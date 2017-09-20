@@ -44,6 +44,20 @@
                <exclude name="install/**" />
                <modified />
            </fileset>
+          
+           <fileset dir="${basedir}">
+               <include name="**/*.php" />
+               <!-- exclude the install directory, repeat line below to exclude more -->
+               <exclude name="ARJS/**" />
+               <modified />
+           </fileset>
+
+		   <fileset dir="${basedir}">
+               <include name="**/*.php" />
+               <!-- exclude the install directory, repeat line below to exclude more -->
+               <exclude name="SizeInReality/**" />
+               <modified />
+           </fileset>
 
            <fileset dir="${basedir}/Prestshop 1.6/arview">
                <include name="**/*.php" />
