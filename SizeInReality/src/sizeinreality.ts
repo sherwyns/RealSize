@@ -1,3 +1,4 @@
+//Typescript
 class Sir{
     
     constructor(){
