@@ -1,4 +1,3 @@
-//Typescript
 class Sir{
     
     constructor(){
@@ -19,10 +18,36 @@ class Sir{
         return content;
     } 
 
-   
-    
+    onclick(btnclick){
+           btnclick.style.display = "none";
+    }
+
+    public hasUserMedia(){
+        return !!(navigator.getUserMedia);       
+    }
+
+    mobileCompat(){
+        if(this.hasUserMedia()){
+                 return true;
+        }
+        else{
+                return false;
+        }
+    }
+
 }
 
 
 var sirobj = new Sir();
 document.body.innerHTML = sirobj.render();
+
+sirobj.mobileCompat();
+
+window.onload = () =>
+{
+    var obj =new Sir();
+    var btnclick = <HTMLButtonElement>document.getElementsByTagName("BODY")[0];
+    btnclick.onclick = function (){
+        obj.onclick(btnclick);
+    }
+};

@@ -15,7 +15,29 @@ var Sir = /** @class */ (function () {
         content += "</a-scene>";
         return content;
     };
+    Sir.prototype.onclick = function (btnclick) {
+        btnclick.style.display = "none";
+    };
+    Sir.prototype.hasUserMedia = function () {
+        return !!(navigator.getUserMedia);
+    };
+    Sir.prototype.mobileCompat = function () {
+        if (this.hasUserMedia()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
     return Sir;
 }());
 var sirobj = new Sir();
 document.body.innerHTML = sirobj.render();
+sirobj.mobileCompat();
+window.onload = function () {
+    var obj = new Sir();
+    var btnclick = document.getElementsByTagName("BODY")[0];
+    btnclick.onclick = function () {
+        obj.onclick(btnclick);
+    };
+};
