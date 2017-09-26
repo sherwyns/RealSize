@@ -15,8 +15,23 @@ var Sir = /** @class */ (function () {
         content += "</a-scene>";
         return content;
     };
-    Sir.prototype.onclick = function (btnclick) {
-        btnclick.style.display = "none";
+    Sir.prototype.markerrender = function (domain, file) {
+        var content = '';
+        content += "<a-scene id='scene' embedded artoolkit='sourceType: webcam;'>";
+        content += "<a-assets>";
+        content += "<a-asset-item id='car-obj' src='" + domain + "/model/" + file + "/" + file + ".obj'></a-asset-item>";
+        content += "<a-asset-item id='car-mtl' src='" + domain + "/model/" + file + "/" + file + ".mtl'></a-asset-item>";
+        content += "</a-assets>";
+        content += "<a-entity look-controls='reverseMouseDrag:true'>";
+        content += "<a-obj-model  src='#car-obj' mtl='#car-mtl' position='0 0 0' scale='0.3 0.3 0.3'>	</a-obj-model>";
+        content += "</a-entity>";
+        content += "<a-marker-camera preset='hiro' markersAreaEnabled='false'></a-marker-camera>";
+        content += "</a-scene>";
+        return content;
+    };
+    Sir.prototype.onclick = function (close) {
+        //  close.style.display = "none";
+        location.reload();
     };
     Sir.prototype.hasUserMedia = function () {
         return !!(navigator.getUserMedia);
@@ -36,8 +51,14 @@ document.body.innerHTML = sirobj.render();
 sirobj.mobileCompat();
 window.onload = function () {
     var obj = new Sir();
-    var btnclick = document.getElementsByTagName("BODY")[0];
+    var close = document.getElementsByTagName("BODY")[0];
+    var btnclick = document.getElementById("close");
     btnclick.onclick = function () {
-        obj.onclick(btnclick);
+        obj.onclick(close);
+    };
+    var markerclick = document.getElementById("btn");
+    markerclick.onclick = function () {
+        document.body.innerHTML = sirobj.markerrender("http://localhost/SizeInReality", "Rayman3");
+        //obj.markerrender("http://localhost/SizeInReality","Rayman3");
     };
 };

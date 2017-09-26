@@ -17,9 +17,26 @@ class Sir{
         content += "</a-scene>";
         return content;
     } 
+    
+    markerrender(){
+        var content:string = '';
+        content += "<a-scene id='scene' embedded artoolkit='sourceType: webcam;'>";
+        content += "<a-assets>";
+        content += "<a-asset-item id='car-obj' src='./model/Rayman3/Rayman3.obj'></a-asset-item>";
+        content += "<a-asset-item id='car-mtl' src='./model/Rayman3/Rayman3.mtl'></a-asset-item>";
+        content += "</a-assets>";
+        content += "<a-entity look-controls='reverseMouseDrag:true'>";
+        content += "<a-obj-model  src='#car-obj' mtl='#car-mtl' position='0 0 0' scale='0.3 0.3 0.3'>	</a-obj-model>";
+        content += "</a-entity>";		
+        content += "<a-marker-camera preset='hiro' markersAreaEnabled='false'></a-marker-camera>";
+        content += "</a-scene>";
+        return content;
+    }
 
-    onclick(btnclick){
-           btnclick.style.display = "none";
+   
+    onclick(close){
+         //  close.style.display = "none";
+           location.reload();
     }
 
     public hasUserMedia(){
@@ -46,8 +63,18 @@ sirobj.mobileCompat();
 window.onload = () =>
 {
     var obj =new Sir();
-    var btnclick = <HTMLButtonElement>document.getElementsByTagName("BODY")[0];
+    var close = <HTMLButtonElement>document.getElementsByTagName("BODY")[0];
+    var btnclick = <HTMLButtonElement>document.getElementById("close");
     btnclick.onclick = function (){
-        obj.onclick(btnclick);
+        obj.onclick(close);
     }
+
+    var markerclick = <HTMLButtonElement>document.getElementById("btn");
+    markerclick.onclick = function (){
+        document.body.innerHTML = sirobj.markerrender();
+     
+    } 
+     
 };
+
+
