@@ -3,13 +3,13 @@ class Sir{
     constructor(){
 
     }      
-    render() {
+    render(path,file) {
         var content:string = '';
         content += "<a-scene id='scene' embedded artoolkit='sourceType: webcam;'>";
         content += "<a-entity camera position='0 1.6 10'></a-entity>";
         content += "<a-assets>";
-        content += "<a-asset-item id='car-obj' src='./model/Rayman3/Rayman3.obj'></a-asset-item>";
-        content += "<a-asset-item id='car-mtl' src='./model/Rayman3/Rayman3.mtl'></a-asset-item>";
+        content += "<a-asset-item id='car-obj' src='" + path + "/" + file + "/" + file +".obj'></a-asset-item>";
+        content += "<a-asset-item id='car-mtl' src='" + path + "/" + file + "/" + file +".mtl'></a-asset-item>";
         content += "</a-assets>";
         content += "<a-entity look-controls='reverseMouseDrag:true'>";
         content += "<a-obj-model  src='#car-obj' mtl='#car-mtl' position='0 1 0' scale='0.3 0.3 0.3'>	</a-obj-model>";
@@ -18,26 +18,23 @@ class Sir{
         return content;
     } 
     
-    markerrender(){
+    markerrender(path,file){
         var content:string = '';
         content += "<a-scene id='scene' embedded artoolkit='sourceType: webcam;'>";
         content += "<a-assets>";
-        content += "<a-asset-item id='car-obj' src='./model/Rayman3/Rayman3.obj'></a-asset-item>";
-        content += "<a-asset-item id='car-mtl' src='./model/Rayman3/Rayman3.mtl'></a-asset-item>";
+        content += "<a-asset-item id='car-obj' src='" + path + "/" + file + "/" + file +".obj'></a-asset-item>";
+        content += "<a-asset-item id='car-mtl' src='" + path + "/" + file + "/" + file +".mtl'></a-asset-item>";
         content += "</a-assets>";
         content += "<a-entity look-controls='reverseMouseDrag:true'>";
         content += "<a-obj-model  src='#car-obj' mtl='#car-mtl' position='0 0 0' scale='0.3 0.3 0.3'>	</a-obj-model>";
         content += "</a-entity>";		
         content += "<a-marker-camera preset='hiro' markersAreaEnabled='false'></a-marker-camera>";
         content += "</a-scene>";
+         content += "<div id='btn' style='padding: 50px;position: absolute;bottom: 0;'> <button id='markerlessbtn' style='padding: 8px;opacity: 0.8;cursor:pointer;'>Markerless-based AR</button></div>   ";
         return content;
     }
 
    
-    onclick(close){
-         //  close.style.display = "none";
-           location.reload();
-    }
 
     public hasUserMedia(){
         return !!(navigator.getUserMedia);       
@@ -54,27 +51,36 @@ class Sir{
 
 }
 
-
 var sirobj = new Sir();
-document.body.innerHTML = sirobj.render();
+(<any>window).sir = sirobj;
+var path ="http://localhost/arshop6/modules/arview/ar/models/";
+var file ="Rayman3";
+document.getElementById("sircontent").innerHTML = sirobj.render(path, file);
 
-sirobj.mobileCompat();
+
+
+
 
 window.onload = () =>
 {
-    var obj =new Sir();
-    var close = <HTMLButtonElement>document.getElementsByTagName("BODY")[0];
-    var btnclick = <HTMLButtonElement>document.getElementById("close");
-    btnclick.onclick = function (){
-        obj.onclick(close);
-    }
+    
+    sirobj.mobileCompat();
 
-    var markerclick = <HTMLButtonElement>document.getElementById("btn");
-    markerclick.onclick = function (){
-        document.body.innerHTML = sirobj.markerrender();
      
-    } 
+
+     var markerclick = <HTMLButtonElement>document.getElementById("markerbtn");
+     markerclick.onclick = function (){
+       document.getElementById("sircontent").innerHTML = sirobj.markerrender(path,file);
+       
+        var markerlessclick = <HTMLButtonElement>document.getElementById("markerlessbtn");
+      //  console.log(markerlessclick);
+        
+        markerlessclick.onclick = function (){
+            location.reload();
+        }
+       
+       
+     } 
      
 };
-
 
