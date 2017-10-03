@@ -28,17 +28,17 @@
 	  <apply executable="php" taskname="lint">
 	   <arg value="-l" />
 
-           <fileset dir="${basedir}/Prestshop 1.6/arview/controllers/admin/">
+           <fileset dir="${basedir}/Prestshop 1.6/sizeinreality/controllers/admin/">
             <include name="**/*.php" />
             <modified />
            </fileset>
 
-           <fileset dir="${basedir}/Prestshop 1.6/arview/controllers/hook/">
+           <fileset dir="${basedir}/Prestshop 1.6/sizeinreality/controllers/hook/">
             <include name="**/*.php" />
             <modified />
            </fileset>          
           
-           <fileset dir="${basedir}/Prestshop 1.6/arview">
+           <fileset dir="${basedir}/Prestshop 1.6/sizeinreality">
                <include name="**/*.php" />
                <!-- exclude the install directory, repeat line below to exclude more -->
                <exclude name="install/**" />
@@ -59,14 +59,14 @@
                <modified />
            </fileset>
 
-           <fileset dir="${basedir}/Prestshop 1.6/arview">
+           <fileset dir="${basedir}/Prestshop 1.6/sizeinreality">
                <include name="**/*.php" />
                <!-- exclude the views directory, repeat line below to exclude more -->
                <exclude name="views/**" />
                <modified />
            </fileset>          
         
-           <fileset dir="${basedir}/Prestshop 1.6/arview/">
+           <fileset dir="${basedir}/Prestshop 1.6/sizeinreality/">
                <include name="**/*.php" />
                <modified />
            </fileset>
@@ -79,8 +79,8 @@
         <exec executable="${basedir}/build/tools/phpcs.phar" taskname="phpcs">
             <arg value="--standard=PSR2"/>
             <arg value="--extensions=php"/>
-            <arg value="--ignore=${basedir}/Prestshop 1.6/arview/views, /Prestshop 1.6/arview/index.php, ${basedir}/Prestshop 1.6/arview/controllers/admin/index.php,
-                            ${basedir}/Prestshop 1.6/arview/controllers/hook/index.php, ${basedir}/Prestshop 1.6/arview/install" />
+            <arg value="--ignore=${basedir}/Prestshop 1.6/sizeinreality/views, /Prestshop 1.6/sizeinreality/index.php, ${basedir}/Prestshop 1.6/sizeinreality/controllers/admin/index.php,
+                            ${basedir}/Prestshop 1.6/sizeinreality/controllers/hook/index.php, ${basedir}/Prestshop 1.6/sizeinreality/install" />
             <arg path="${basedir}"/>
         </exec>
     </target>
@@ -92,8 +92,8 @@
             <arg value="--report-file=${basedir}/build/logs/checkstyle.xml"/>
             <arg value="--standard=PSR2"/>
             <arg value="--extensions=php"/>
-            <arg value="--ignore=${basedir}/Prestshop 1.6/arview/views, /Prestshop 1.6/arview/index.php, ${basedir}/Prestshop 1.6/arview/controllers/admin/index.php,
-                            ${basedir}/Prestshop 1.6/arview/controllers/hook/index.php, ${basedir}/Prestshop 1.6/arview/install" />
+            <arg value="--ignore=${basedir}/Prestshop 1.6/sizeinreality/views, /Prestshop 1.6/sizeinreality/index.php, ${basedir}/Prestshop 1.6/sizeinreality/controllers/admin/index.php,
+                            ${basedir}/Prestshop 1.6/sizeinreality/controllers/hook/index.php, ${basedir}/Prestshop 1.6/sizeinreality/install" />
             <arg path="${basedir}"/>
         </exec>
     </target>	
