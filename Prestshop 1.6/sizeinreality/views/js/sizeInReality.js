@@ -10,6 +10,13 @@ window.onload = function(){
         //Events
         sizeInRealityBut.on('click', openSizeInReality);   
         myModalWindowClose.on('click', closeSizeInReality);
+        
+        //Invoke Function onInit
+//        function getButtonSettings(){
+//            var borderRadius = $('#getButtonSettings').data('borderradius')
+//            
+//            sizeInRealityBut.css({"border-radius": borderRadius+'px', "font-size": "200%"});; 
+//        };
 
         function checkCompatibility(){
             if(!sir.mobileCompat()){
@@ -46,11 +53,14 @@ window.onload = function(){
         }
 
         return {
+            getButtonSettings: getButtonSettings,
             checkCompatibility: checkCompatibility
+            
         }
 
     })();
-
+    
+   // sirScript.getButtonSettings();
     sirScript.checkCompatibility();
     
 };

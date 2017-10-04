@@ -15,6 +15,7 @@ class AdminSizeInRealityModel
         Db::getInstance()->execute("INSERT INTO "._DB_PREFIX_."sizeinreality VALUES(null, '".(int)$id_product."', '".pSQL($modelName)."', now())");
     }
     
+    
     /**
      * Method to list all products.
      *
@@ -117,11 +118,30 @@ class AdminSizeInRealityModel
      * 
      * @return array
      */     
-    public static function deleteData($sizeinrealitytId, $productid, $model){
+    public static function deleteData($sizeinrealitytId, $productid, $model)
+    {
         $sql = 'DELETE FROM '._DB_PREFIX_.'sizeinreality where id_sizeinreality ='.(int)$sizeinrealitytId;
         if(!Db::getInstance()->execute($sql))
             return false;
         return true;
+    }
+    
+    public function getButtonSettings()
+    {
+        $data =  Db::getInstance()->executeS("SELECT value FROM "._DB_PREFIX_."configuration WHERE name = 'SIR_BUTTON_SETTINGS' ");
+        $data = json_decode($data[0]['value'], true);
+      //  echo "<pre>";print_r($data);die;
+        return $data;
+    }
+    
+    public function saveButtonSettings($data)
+    {
+        $data = json_encode($data);
+        $sql = "UPDATE "._DB_PREFIX_."configuration SET value = '". $data ."' WHERE name = 'SIR_BUTTON_SETTINGS' ";
+        //echo $sql;die;
+        if(!Db::getInstance()->execute($sql))
+            return false;
+        return true;        
     }
     
 } // End Of AdminArViewModel class

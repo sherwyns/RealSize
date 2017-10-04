@@ -1,5 +1,7 @@
 <!-- Ar Button -->
+    <br/>
     {$btn}
+    <br/>
 <!-- /Ar Button -->
 <!-- The Modal -->
 <div id="myModal" class="modal">

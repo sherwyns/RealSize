@@ -9,12 +9,14 @@ var AdminSizeInReality = function(){
 AdminSizeInReality.prototype = {
     file:null,
     page:null,
+    getUrl:null,
     inputTemp:null,
     sizeInRealityTable:null,
     btselclass:'.arFormGrp .dropdown-toggle',
     btfileclass:'fileUploadLabel',
     init: function(){
         var self = this;
+        self.getUrl = $('#getUrl').val();
         self.page = $('#getPage').val();
         if(self.page == 'sizeinreality'){
             self.dataTable();
@@ -29,6 +31,9 @@ AdminSizeInReality.prototype = {
         $('#uploadFileButton').on('click', function(){
             self.resetForm();
         });
+        
+        $('#buttonSettings').on('click', function(){self.saveButtonSettings(self.getUrl);});
+        
         
         $('#sizeInRealitysubmit').on('click', function(){
             var productid = $('#product').val();
@@ -82,7 +87,9 @@ AdminSizeInReality.prototype = {
             formData.append('arfile', file, file.name);
             formData.append('productid', id_product);
             self.uploadFile(formData);
-        });        
+        });   
+        
+        
         //--------------------------------------------------------------------------------------- End Of sizeInRealityupload    
         $('#deleteAr').live('click', function(){
             var sizeInRealitytId = $(this).data('id');
@@ -101,6 +108,29 @@ AdminSizeInReality.prototype = {
         });
 
     },
+    
+    saveButtonSettings: function(getUrl){
+        var self = this;
+        var postData = { buttonSettings:true, buttontext: $('#buttontext').val(),  buttonfontsize: $('#buttonfontsize').val(),
+            buttonfontcolor: $('#buttonfontcolor').val(), buttonbackgroundcolor: $('#buttonbackgroundcolor').val(), 
+            buttonbordercolor: $('#buttonbordercolor').val(), buttonverticalsize: $('#buttonverticalsize').val(),
+            buttonhorizontalsize: $('#buttonhorizontalsize').val(), buttonbordersize: $('#buttonbordersize').val(),
+            buttonborderradius: $('#buttonborderradius').val(), buttonfontweight: $('#buttonfontweight').val()}         
+        self.buttonAjax(getUrl, postData);
+    },
+    
+    buttonAjax: function(getUrl,postData){
+        $.ajax({
+                method: "POST",
+                url: getUrl,
+                data: postData
+        }).done(function( res ) {
+            swal('', 'Data saved Successfully', 'success');
+        }).fail(function(err){
+            swal('', 'Oops Someting went wrong!', 'Error');
+        });
+    },
+    
     dataTable: function(column0 = null, column1 = null){
         var self = this;
         var getUrl = $('#getUrl').val();

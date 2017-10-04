@@ -215,8 +215,25 @@ class SizeInReality extends Module
         $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';     
         $url = $protocol.$_SERVER['HTTP_HOST']._MODULE_DIR_.'sizeinreality/ar/models/';
         $ardata = AdminSizeInRealityModel::getProductModel((int)Tools::getValue('id_product'));
-        $btn = count($ardata) > 0 ? '<a class="btn btn-success btn-md" btn-lg" id="sizeinreality" data-filepath = "'.$url.'" data-file="Diffuser_Bamboo" > AR View </a>' : NULL;
+//        echo "<pre>";print_r($ardata);die;
+        $buttonSettings = AdminSizeInRealityModel::getButtonSettings();
+//        $buttonAttr = "<p id='getButtonSettings' data-borderRadius='".$buttonSettings['borderradius']."'>"
+//                . "</p>";
+//        echo "<pre>";print_r($buttonSettings);die;
+        $btn = count($ardata) > 0 ? '<a id="sizeinreality" data-filepath = "'.$url.'" data-file="'.$ardata[0]['file'].'" '
+                . ' data-filepath = "'.$url.'" data-file="Diffuser_Bamboo"'
+                . ' style="font-size: '.$buttonSettings['buttonfontsize'].'px; color: '.$buttonSettings['buttonfontcolor'].'; '
+                . 'font-weight: '.$buttonSettings['buttonfontweight'].'; background-color: '.$buttonSettings['buttonbackgroundcolor'].'; '
+                . 'padding: '.$buttonSettings['buttonverticalsize'].'px '.$buttonSettings['buttonfontsize'].'px; '
+                . 'border: '.$buttonSettings['buttonbordersize'].'px solid '.$buttonSettings['buttonbordercolor'].'; '
+                . '-webkit-border-radius:'.$buttonSettings['buttonborderradius'].'px; '
+                . '-moz-border-radius:'.$buttonSettings['buttonborderradius'].'px; '
+                . 'border-radius:'.$buttonSettings['buttonborderradius'].'px;cursor: pointer; "                '
+                
+             
+                . '>'.$buttonSettings['buttontext'] .'</a>' : NULL;
         $this->context->smarty->assign('btn', $btn);
+//        $this->context->smarty->assign('buttonSettings', $buttonAttr);
         return $this->display(__FILE__, 'displayRightColumnProduct.tpl');
     } 
     

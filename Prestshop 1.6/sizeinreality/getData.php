@@ -25,7 +25,15 @@ if(Tools::getValue('sizeInRealitytId')){
     }
 } else if(!empty($_POST['column0']) || !empty($_POST['column1']) ){
     AdminSizeinrealityModel::getData($_POST['column0'], $_POST['column1']);
+} else if(Tools::getValue('buttonSettings')) {
+    $data = ['buttontext' => Tools::getValue('buttontext'), 'buttonfontsize' => Tools::getValue('buttonfontsize'),
+            'buttonfontcolor' => Tools::getValue('buttonfontcolor'), 'buttonbackgroundcolor' => Tools::getValue('buttonbackgroundcolor'),
+            'buttonbordercolor' => Tools::getValue('buttonbordercolor'), 'buttonverticalsize' => Tools::getValue('buttonverticalsize'),
+            'buttonhorizontalsize' => Tools::getValue('buttonhorizontalsize'), 'buttonbordersize' => Tools::getValue('buttonbordersize'),
+            'buttonborderradius' => Tools::getValue('buttonborderradius'), 'buttonfontweight' => Tools::getValue('buttonfontweight')];
+    echo AdminSizeinrealityModel::saveButtonSettings($data);
+ 
 } else {
     AdminSizeinrealityModel::getData();
-}    
+}   
     

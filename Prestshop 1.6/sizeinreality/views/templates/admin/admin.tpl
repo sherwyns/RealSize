@@ -70,8 +70,18 @@
     </div>
 </div>
                         
-                        
-{*<div class="panel">
+{$panel}                       
 
-</div>   *}
-  
+
+{*    <div class="row">
+        <div class="form-group">
+            <label class="control-label col-lg-3"> Border Radius:</label>
+            <div class="col-lg-9">
+                <div class="input-group fixed-width-lg">
+                    <span class="input-group-addon">px</span><input type="text" name="borderRadius" id="borderRadius" value="2" min='2'>
+                </div>
+                <p class="help-block">This option is used to adjust the radius of button border.</p>
+            </div>
+        </div>        
+    </div>*}			
+ 
