@@ -35,3 +35,6 @@
     visibility: hidden;    
 }
 
+.labeltxt{
+    text-align: right;
+}

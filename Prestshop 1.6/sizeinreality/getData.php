@@ -4,8 +4,16 @@ require_once(dirname(__FILE__).'../../../init.php');
 require_once(dirname(__FILE__).'/controllers/admin/AdminFileProcess.php');
 require_once(dirname(__FILE__).'/controllers/admin/AdminSizeInRealityModel.php');
 
+$headers = apache_request_headers();
+if(AdminSizeinrealityModel::isToken() != $headers['sirToken']){
+    $html = '<div style="color: #a94442;background-color: #f2dede;border-color: #ebccd1;padding: 15px;">';
+    $html .= 'Token is not valid, hack stop !';
+    $html .= '</div>';
+    echo $html;
+    die;
+}
+
 if(Tools::getValue('sizeInRealitytId')){
-   
     $sizeInRealitytId = (int)Tools::getValue('sizeInRealitytId');
     $productid = (int)Tools::getValue('productid');
     $model = (string)Tools::getValue('model');
@@ -18,8 +26,7 @@ if(Tools::getValue('sizeInRealitytId')){
     $id_product = Tools::getValue('productid');
     $productId = AdminSizeinrealityModel::checkProduct($id_product);
     if(count($productId) > 0){
-        $data = ['status' => 0, 'message' => 'Select Different Product']; 
-        echo json_encode($data); 
+        echo json_encode(['status' => 0, 'message' => 'Select Different Product']); 
     } else if(count($productId) == 0){  
         echo json_encode(AdminFileProcess::processFile($fileName, $fileTmpName, $fileType, $id_product));
     }
@@ -32,8 +39,7 @@ if(Tools::getValue('sizeInRealitytId')){
             'buttonhorizontalsize' => Tools::getValue('buttonhorizontalsize'), 'buttonbordersize' => Tools::getValue('buttonbordersize'),
             'buttonborderradius' => Tools::getValue('buttonborderradius'), 'buttonfontweight' => Tools::getValue('buttonfontweight')];
     echo AdminSizeinrealityModel::saveButtonSettings($data);
- 
 } else {
     AdminSizeinrealityModel::getData();
 }   
-    
+  

@@ -12,16 +12,26 @@ AdminSizeInReality.prototype = {
     getUrl:null,
     inputTemp:null,
     sizeInRealityTable:null,
+    sirToken:null,
     btselclass:'.arFormGrp .dropdown-toggle',
     btfileclass:'fileUploadLabel',
     init: function(){
         var self = this;
         self.getUrl = $('#getUrl').val();
         self.page = $('#getPage').val();
+        self.sirToken = $('#sirToken').val();
+        $('#buttonfontcolor').wheelColorPicker();
+        $('#buttonbackgroundcolor').wheelColorPicker();
+        $('#buttonbordercolor').wheelColorPicker();
+        
         if(self.page == 'sizeinreality'){
             self.dataTable();
         }
         
+        $('.ColorValues').on('blur', function(){
+            $(this).css('background-color', '#'+$(this).val());
+        })
+
         $('#fileInput').live('change', function(){
            var file = document.getElementById("fileInput").files[0].name;
            self.file = file;
@@ -62,10 +72,9 @@ AdminSizeInReality.prototype = {
             self.uploadFile(formData);            
         });
         //--------------------------------------------------------------------------------------- End Of sizeInRealitysubmit
-        $('#sizeInRealityupload').live('click', function(){   
-           // var file = $('.fileInfo').html();
+        $('#sizeInRealityupload').live('click', function(){ 
+            self.sirToken = $('#sirToken').val();
             var file = self.validateFile(self.file);
-            //console.log(file);
             if(file == 0){
                 self.fieldRequired('file', self.btfileclass);
             } else {
@@ -92,6 +101,7 @@ AdminSizeInReality.prototype = {
         
         //--------------------------------------------------------------------------------------- End Of sizeInRealityupload    
         $('#deleteAr').live('click', function(){
+            self.sirToken = $('#sirToken').val();
             var sizeInRealitytId = $(this).data('id');
             var productid = $(this).data('productid');
             var model = $(this).data('model');
@@ -109,6 +119,7 @@ AdminSizeInReality.prototype = {
 
     },
     
+    
     saveButtonSettings: function(getUrl){
         var self = this;
         var postData = { buttonSettings:true, buttontext: $('#buttontext').val(),  buttonfontsize: $('#buttonfontsize').val(),
@@ -120,14 +131,24 @@ AdminSizeInReality.prototype = {
     },
     
     buttonAjax: function(getUrl,postData){
+        var self = this;
+        $.ajaxSetup({
+            headers: { 'sirToken': self.sirToken }
+        });
         $.ajax({
                 method: "POST",
                 url: getUrl,
                 data: postData
         }).done(function( res ) {
-            swal('', 'Data saved Successfully', 'success');
+            var msg = JSON.parse(res)
+            if(msg.status == 1){
+                swal('', msg.message, 'success');
+            } else if(msg.status == 0){
+                swal('', msg.message, 'error');
+            }    
+            
         }).fail(function(err){
-            swal('', 'Oops Someting went wrong!', 'Error');
+            swal('', 'Oops Someting went wrong!', 'error');
         });
     },
     
@@ -141,7 +162,8 @@ AdminSizeInReality.prototype = {
             "ajax":{
                 url : getUrl, 
                 type: "post",
-                data:{'column0':column0, 'column1':column1},
+                headers: { sirToken: self.sirToken},
+                data:{'column0':column0, 'column1':column1, 'sirToken': self.sirToken},
                 error: function(){ 
                     $(".sizeInRealityTableError").html("");
                     $("#sizeInRealityTable").append('<tbody class="sizeInRealityTableError"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
@@ -190,6 +212,7 @@ AdminSizeInReality.prototype = {
         var url = $('#getUrl').val(); 
         var xhr = new XMLHttpRequest();        
         xhr.open('POST', url, true);
+        xhr.setRequestHeader("sirToken", self.sirToken);
         xhr.onload = function () {
           if (xhr.readyState == 4 && xhr.status === 200) {
                 $('.fileInfo').html('');
@@ -211,10 +234,7 @@ AdminSizeInReality.prototype = {
                         self.dataTable();
                     }
                     
-                   // swal('', data.message, 'success');
-                  // window.location.reload(true);
                 } else if(res.status == 0) {
-                    //console.log(data.message); 
                     $('.fileInfo').html('');
                     swal('', res.message, 'error');
                 }
@@ -291,6 +311,12 @@ AdminSizeInReality.prototype = {
         var self = this;
         $('.fileInfo').html(self.file + ', Upload Zip Only..').addClass('errorTxt');
     },
+    
+    applyInputBoxBgColor: function(buttonbackgroundcolor){
+//        $('#buttonfontcolor').css('background-color': '#'+buttonbackgroundcolor);
+//        $('#buttonbackgroundcolor').css('background-color': '#'+buttonbackgroundcolor);
+//        $('#buttonbordercolor').css('background-color': '#'+buttonbackgroundcolor);
+    }
     
 }
 

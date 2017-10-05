@@ -78,9 +78,17 @@ class SizeInReality extends Module
         $sql_file = dirname(__FILE__).'/install/install.sql';
         if (!$this->loadSQLFile($sql_file))
                 return false;        
+        
+        if(!AdminSizeinrealityModel::insertButtonSettings())
+            return false;
 
         return true;
     }
+    
+    /**
+     * @brief Uninstallation method
+     * 
+     */    
     public function uninstall()
     {
         if (!parent::uninstall())
@@ -91,6 +99,9 @@ class SizeInReality extends Module
         
         $sql_file = dirname(__FILE__).'/install/uninstall.sql';
         if (!$this->loadSQLFile($sql_file))
+            return false;
+        
+        if(!AdminSizeinrealityModel::removeButtonSettings())
             return false;
         
         AdminFileProcess::removeAllFiles();
@@ -114,14 +125,22 @@ class SizeInReality extends Module
         $tab->active = 1;
         return $tab->add();
     }
-
+    
+    /**
+     * @brief Uninstallation Tab method
+     * 
+     */
     public function uninstallTab($class_name)
     {
         $id_tab = (int)Tab::getIdFromClassName($class_name);
         $tab = new Tab((int)$id_tab);
         return $tab->delete();
     }
-
+    
+    /**
+     * @brief method for load sql file
+     * 
+     */
     public function loadSQLFile($sql_file)
     {
         $sql_content = file_get_contents($sql_file);
@@ -133,7 +152,11 @@ class SizeInReality extends Module
                         $result &= Db::getInstance()->execute(trim($request));
         return $result;
     }
-    
+
+    /**
+     * @brief prompt method
+     * 
+     */    
     public function onClickOption($type, $href = false)
     {
         $confirm_reset = $this->l('Reseting this module will delete all files and data from your database, are you sure you want to reset it ?');
@@ -143,7 +166,13 @@ class SizeInReality extends Module
             return $matchType[$type];
         return '';
     }
-
+    
+    /**
+     *
+     * Hook to add  js on back office header
+     * Method for prompt window
+     * 
+     */ 
     public function hookDisplayBackOfficeHeader($params)
     {
         if (Tools::getValue('controller') != 'AdminModules'){
@@ -215,25 +244,19 @@ class SizeInReality extends Module
         $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';     
         $url = $protocol.$_SERVER['HTTP_HOST']._MODULE_DIR_.'sizeinreality/ar/models/';
         $ardata = AdminSizeInRealityModel::getProductModel((int)Tools::getValue('id_product'));
-//        echo "<pre>";print_r($ardata);die;
         $buttonSettings = AdminSizeInRealityModel::getButtonSettings();
-//        $buttonAttr = "<p id='getButtonSettings' data-borderRadius='".$buttonSettings['borderradius']."'>"
-//                . "</p>";
-//        echo "<pre>";print_r($buttonSettings);die;
         $btn = count($ardata) > 0 ? '<a id="sizeinreality" data-filepath = "'.$url.'" data-file="'.$ardata[0]['file'].'" '
                 . ' data-filepath = "'.$url.'" data-file="Diffuser_Bamboo"'
-                . ' style="font-size: '.$buttonSettings['buttonfontsize'].'px; color: '.$buttonSettings['buttonfontcolor'].'; '
-                . 'font-weight: '.$buttonSettings['buttonfontweight'].'; background-color: '.$buttonSettings['buttonbackgroundcolor'].'; '
+                . ' style="font-size: '.$buttonSettings['buttonfontsize'].'px; color: #'.$buttonSettings['buttonfontcolor'].'; '
+                . 'font-weight: '.$buttonSettings['buttonfontweight'].'; background-color: #'.$buttonSettings['buttonbackgroundcolor'].'; '
                 . 'padding: '.$buttonSettings['buttonverticalsize'].'px '.$buttonSettings['buttonfontsize'].'px; '
-                . 'border: '.$buttonSettings['buttonbordersize'].'px solid '.$buttonSettings['buttonbordercolor'].'; '
+                . 'border: '.$buttonSettings['buttonbordersize'].'px solid #'.$buttonSettings['buttonbordercolor'].'; '
                 . '-webkit-border-radius:'.$buttonSettings['buttonborderradius'].'px; '
                 . '-moz-border-radius:'.$buttonSettings['buttonborderradius'].'px; '
                 . 'border-radius:'.$buttonSettings['buttonborderradius'].'px;cursor: pointer; "                '
-                
-             
                 . '>'.$buttonSettings['buttontext'] .'</a>' : NULL;
+        
         $this->context->smarty->assign('btn', $btn);
-//        $this->context->smarty->assign('buttonSettings', $buttonAttr);
         return $this->display(__FILE__, 'displayRightColumnProduct.tpl');
     } 
     
@@ -259,6 +282,7 @@ class SizeInReality extends Module
      */       
     public function hookDisplayAdminProductsExtra($params)
     {
+        $token = AdminSizeInRealityModel::getToken();
         $id_product = (int)Tools::getValue('id_product');
         if($id_product == 0 || $id_product == null){
             $html = '';
@@ -277,6 +301,7 @@ class SizeInReality extends Module
             $id_product = (int)Tools::getValue('id_product');
             $this->context->smarty->assign('url', $url);
             $this->context->smarty->assign('id_product', $id_product);
+            $this->context->smarty->assign('token', $token);
             return $this->display(__FILE__, 'product_properties.tpl');
         }    
     }    

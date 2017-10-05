@@ -15,6 +15,8 @@ class AdminSizeInRealityController extends ModuleAdminController
        $this->path =  _PS_MODULE_DIR_.$this->module.'/';
        parent::__construct();
     }
+    
+    
 
     /**
      * Method allow to include css and js on Admin Arview page
@@ -26,11 +28,13 @@ class AdminSizeInRealityController extends ModuleAdminController
         $this->context->controller->addJS(_MODULE_DIR_.'sizeinreality/views/js/jquery.dataTables.js');
         $this->context->controller->addJS(_MODULE_DIR_.'sizeinreality/views/js/sweetalert2.min.js');
         $this->context->controller->addJS(_MODULE_DIR_.'sizeinreality/views/js/bootstrap-select.min.js');
+        $this->context->controller->addJS(_MODULE_DIR_.'sizeinreality/views/js/jquery.wheelcolorpicker.js');
         $this->context->controller->addCSS(_MODULE_DIR_.'sizeinreality/views/css/adminSizeInReality.css');
         $this->context->controller->addCSS(_MODULE_DIR_.'sizeinreality/views/css/jquery.dataTables.css');
         $this->context->controller->addCSS(_MODULE_DIR_.'sizeinreality/views/css/font-awesome.min.css');
         $this->context->controller->addCSS(_MODULE_DIR_.'sizeinreality/views/css/bootstrap-select.min.css');
         $this->context->controller->addCSS(_MODULE_DIR_.'sizeinreality/views/css/sweetalert2.min.css');
+        $this->context->controller->addCSS(_MODULE_DIR_.'sizeinreality/views/css/wheelcolorpicker.css');        
         $this->show_toolbar = true;
         $this->display = 'list'; //set view than renderView and list than renderList
 
@@ -47,7 +51,9 @@ class AdminSizeInRealityController extends ModuleAdminController
      */     
     public function renderlist()
     {
-
+        $token = AdminSizeInRealityModel::getToken();
+        
+       // $token = Tools::getAdminTokenLite('AdminSizeInReality');
         $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';     
         $url = $protocol.$_SERVER['HTTP_HOST']._MODULE_DIR_.'sizeinreality/getData.php';
         $getAllProducts = AdminSizeInRealityModel::getAllProducts();
@@ -59,7 +65,7 @@ class AdminSizeInRealityController extends ModuleAdminController
 
         $panel .= '<div class="row">';
         $panel .= '<div class="form-group">';
-        $panel .= '<label class="control-label col-lg-3"> Text:</label>';
+        $panel .= '<label class="control-label col-lg-2 labeltxt"> Text:</label>';
         $panel .= '<div class="col-lg-9">';
         $panel .= '<div class="input-group fixed-width-lg">';
         $panel .= '<input type="text" name="buttontext" id="buttontext" value="'.$buttonSettings['buttontext'].'" min="2">';
@@ -71,7 +77,7 @@ class AdminSizeInRealityController extends ModuleAdminController
 
         $panel .= '<div class="row">';
         $panel .= '<div class="form-group">';
-        $panel .= '<label class="control-label col-lg-3"> font-size:</label>';
+        $panel .= '<label class="control-label col-lg-2 labeltxt"> font-size:</label>';
         $panel .= '<div class="col-lg-9">';
         $panel .= '<div class="input-group fixed-width-lg">';
         $panel .= '<span class="input-group-addon">px</span><input type="text" name="buttonfontsize" id="buttonfontsize" value="'.$buttonSettings['buttonfontsize'].'" min="2">';
@@ -83,7 +89,7 @@ class AdminSizeInRealityController extends ModuleAdminController
         
         $panel .= '<div class="row">';
         $panel .= '<div class="form-group">';
-        $panel .= '<label class="control-label col-lg-3"> font-weight:</label>';
+        $panel .= '<label class="control-label col-lg-2 labeltxt"> font-weight:</label>';
         $panel .= '<div class="col-lg-9">';
         $panel .= '<div class="input-group fixed-width-lg">';
         $panel .= '<input type="text" name="buttonfontweight" id="buttonfontweight" value="'.$buttonSettings['buttonfontweight'].'" min="2">';
@@ -97,10 +103,11 @@ class AdminSizeInRealityController extends ModuleAdminController
 
         $panel .= '<div class="row">';
         $panel .= '<div class="form-group">';
-        $panel .= '<label class="control-label col-lg-3"> font-color:</label>';
+        $panel .= '<label class="control-label col-lg-2 labeltxt"> font-color:</label>';
         $panel .= '<div class="col-lg-9">';
         $panel .= '<div class="input-group fixed-width-lg">';
-        $panel .= '<input type="text" name="buttonfontcolor" id="buttonfontcolor" value="'.$buttonSettings['buttonfontcolor'].'" min="2">';
+        $panel .= '<input type="text" name="buttonfontcolor" class="ColorValues" id="buttonfontcolor" style="background-color:#'.$buttonSettings['buttonfontcolor'].'" '
+                . 'value="'.$buttonSettings['buttonfontcolor'].'" min="2">';
         $panel .= '</div>';
         $panel .= '</div>';
         $panel .= '</div>';        
@@ -109,10 +116,11 @@ class AdminSizeInRealityController extends ModuleAdminController
         
         $panel .= '<div class="row">';
         $panel .= '<div class="form-group">';
-        $panel .= '<label class="control-label col-lg-3"> Background color:</label>';
+        $panel .= '<label class="control-label col-lg-2 labeltxt"> Background color:</label>';
         $panel .= '<div class="col-lg-9">';
         $panel .= '<div class="input-group fixed-width-lg">';
-        $panel .= '<input type="text" name="buttonbackgroundcolor" id="buttonbackgroundcolor" value="'.$buttonSettings['buttonbackgroundcolor'].'" min="2">';
+        $panel .= '<input type="text" name="buttonbackgroundcolor" class="ColorValues" id="buttonbackgroundcolor" style="background-color:#'.$buttonSettings['buttonbackgroundcolor'].'" '
+                . 'value="'.$buttonSettings['buttonbackgroundcolor'].'" min="2">';
         $panel .= '</div>';
         $panel .= '</div>';
         $panel .= '</div>';        
@@ -121,10 +129,11 @@ class AdminSizeInRealityController extends ModuleAdminController
 
         $panel .= '<div class="row">';
         $panel .= '<div class="form-group">';
-        $panel .= '<label class="control-label col-lg-3"> Border color:</label>';
+        $panel .= '<label class="control-label col-lg-2 labeltxt"> Border color:</label>';
         $panel .= '<div class="col-lg-9">';
         $panel .= '<div class="input-group fixed-width-lg">';
-        $panel .= '<input type="text" name="buttonbordercolor" id="buttonbordercolor" value="'.$buttonSettings['buttonbordercolor'].'" min="2">';
+        $panel .= '<input type="text" name="buttonbordercolor" class="ColorValues" id="buttonbordercolor" style="background-color:#'.$buttonSettings['buttonbordercolor'].'" '
+                . 'value="'.$buttonSettings['buttonbordercolor'].'" min="2">';
         $panel .= '</div>';
         $panel .= '</div>';
         $panel .= '</div>';        
@@ -134,7 +143,7 @@ class AdminSizeInRealityController extends ModuleAdminController
 
         $panel .= '<div class="row">';
         $panel .= '<div class="form-group">';
-        $panel .= '<label class="control-label col-lg-3"> vertical Size:</label>';
+        $panel .= '<label class="control-label col-lg-2 labeltxt"> vertical Size:</label>';
         $panel .= '<div class="col-lg-9">';
         $panel .= '<div class="input-group fixed-width-lg">';
         $panel .= '<span class="input-group-addon">px</span><input type="text" name="buttonverticalsize" id="buttonverticalsize" value="'.$buttonSettings['buttonverticalsize'].'" min="2">';
@@ -147,7 +156,7 @@ class AdminSizeInRealityController extends ModuleAdminController
 
         $panel .= '<div class="row">';
         $panel .= '<div class="form-group">';
-        $panel .= '<label class="control-label col-lg-3"> Horizontal Size:</label>';
+        $panel .= '<label class="control-label col-lg-2 labeltxt"> Horizontal Size:</label>';
         $panel .= '<div class="col-lg-9">';
         $panel .= '<div class="input-group fixed-width-lg">';
         $panel .= '<span class="input-group-addon">px</span><input type="text" name="buttonhorizontalsize" id="buttonhorizontalsize" value="'.$buttonSettings['buttonhorizontalsize'].'" min="2">';
@@ -161,7 +170,7 @@ class AdminSizeInRealityController extends ModuleAdminController
         
         $panel .= '<div class="row">';
         $panel .= '<div class="form-group">';
-        $panel .= '<label class="control-label col-lg-3"> Border size:</label>';
+        $panel .= '<label class="control-label col-lg-2 labeltxt"> Border size:</label>';
         $panel .= '<div class="col-lg-9">';
         $panel .= '<div class="input-group fixed-width-lg">';
         $panel .= '<span class="input-group-addon">px</span><input type="text" name="buttonbordersize" id="buttonbordersize" value="'.$buttonSettings['buttonbordersize'].'" min="2">';
@@ -173,7 +182,7 @@ class AdminSizeInRealityController extends ModuleAdminController
         
         $panel .= '<div class="row">';
         $panel .= '<div class="form-group">';
-        $panel .= '<label class="control-label col-lg-3"> Border Radius:</label>';
+        $panel .= '<label class="control-label col-lg-2 labeltxt"> Border Radius:</label>';
         $panel .= '<div class="col-lg-9">';
         $panel .= '<div class="input-group fixed-width-lg">';
         $panel .= '<span class="input-group-addon">px</span><input type="text" name="buttonborderradius" id="buttonborderradius" value="'.$buttonSettings['buttonborderradius'].'" min="2">';
@@ -191,6 +200,7 @@ class AdminSizeInRealityController extends ModuleAdminController
         $tpl->assign('page', 'sizeinreality');
         $tpl->assign('getAllProducts', $getAllProducts);
         $tpl->assign('panel', $panel);
+        $tpl->assign('token', $token);
         return $tpl->fetch();               
     }
 

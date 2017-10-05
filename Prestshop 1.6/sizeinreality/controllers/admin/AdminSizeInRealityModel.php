@@ -15,6 +15,22 @@ class AdminSizeInRealityModel
         Db::getInstance()->execute("INSERT INTO "._DB_PREFIX_."sizeinreality VALUES(null, '".(int)$id_product."', '".pSQL($modelName)."', now())");
     }
     
+    public function getToken(){
+        $token = md5(uniqid(mt_rand(), true));
+        Configuration::updateValue('SIR_TOKEN', $token);
+        return $token;
+    }
+    
+    public function isToken(){
+        $token = Configuration::get('SIR_TOKEN');
+        return $token;
+    }
+
+
+    public function removeToken(){
+        Configuration::updateValue('SIR_TOKEN', null);
+    }    
+    
     
     /**
      * Method to list all products.
@@ -46,7 +62,7 @@ class AdminSizeInRealityModel
         if(!empty($search1)){
             $sql .= " AND ar.file LIKE'%".pSQL($search1)."%'";
         }    
-//echo $sql;die;
+
         $sqldata = Db::getInstance()->executeS($sql); 
         $total = count($sqldata);
         $i = 0;
@@ -83,6 +99,7 @@ class AdminSizeInRealityModel
         return $sqldata[0];
     }
     
+    
     /**
      * Method to check product exist in arvie table
      *
@@ -95,7 +112,6 @@ class AdminSizeInRealityModel
         return Db::getInstance()->executeS('SELECT * FROM '._DB_PREFIX_.'sizeinreality WHERE id_product = '.(int)$id_product);
     }
     
-    
     /**
      * Method to check product exist in arvie table
      *
@@ -105,7 +121,7 @@ class AdminSizeInRealityModel
      */ 
     public static function checkProduct($id_product)
     {
-        return Db::getInstance()->executeS("SELECT id_product FROM ps_sizeinreality WHERE id_product = ".(int)$id_product);
+        return Db::getInstance()->executeS("SELECT id_product FROM "._DB_PREFIX_."_sizeinreality WHERE id_product = ".(int)$id_product);
     } 
     
     /**
@@ -126,22 +142,61 @@ class AdminSizeInRealityModel
         return true;
     }
     
+    /**
+     * Method to insert sir button settings in configuration table
+     * during installation
+     * 
+     * @return json data
+     */    
+    public function insertButtonSettings()
+    {
+        $obj = '{"buttontext":"SizeInReality","buttonfontsize":"12","buttonfontcolor":"fffff","buttonbackgroundcolor":"46a74e","buttonbordercolor":"3e9546","buttonverticalsize":"5","buttonhorizontalsize":"10","buttonbordersize":"2","buttonborderradius":"4"}';
+        $query = Db::getInstance()->execute("INSERT INTO ps_configuration VALUES (NULL, NULL, NULL, 'SIR_BUTTON_SETTINGS', '".$obj."', now(), now())");        
+        if($query)
+            return true;
+        return false;
+    }    
+    
+    /**
+     * Method to remove sir button settings in configuration table
+     * during uninstallation
+     * 
+     * @return json data
+     */    
+    public function removeButtonSettings()
+    {
+        $query = Db::getInstance()->execute("DELETE FROM ps_configuration WHERE name = 'SIR_BUTTON_SETTINGS'");        
+        if($query)
+            return true;
+        return false;        
+    }    
+    
+    /**
+     * Method to get sir button settings from configuration table
+     * 
+     * @return json data
+     */    
     public function getButtonSettings()
     {
         $data =  Db::getInstance()->executeS("SELECT value FROM "._DB_PREFIX_."configuration WHERE name = 'SIR_BUTTON_SETTINGS' ");
         $data = json_decode($data[0]['value'], true);
-      //  echo "<pre>";print_r($data);die;
         return $data;
     }
     
+    /**
+     * Method to save sir button settings in configuration table
+     * 
+     * @param array $data
+     * 
+     * @return json data
+     */
     public function saveButtonSettings($data)
     {
         $data = json_encode($data);
         $sql = "UPDATE "._DB_PREFIX_."configuration SET value = '". $data ."' WHERE name = 'SIR_BUTTON_SETTINGS' ";
-        //echo $sql;die;
         if(!Db::getInstance()->execute($sql))
-            return false;
-        return true;        
+            return json_encode(['status' => 0, 'message' => 'Data not saved!']);
+        return json_encode(['status' => 1, 'message' => 'Data saved Successfully.......', 'data' => null]);       
     }
     
 } // End Of AdminArViewModel class

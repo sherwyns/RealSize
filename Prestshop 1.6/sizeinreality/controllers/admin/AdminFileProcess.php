@@ -156,14 +156,22 @@ class AdminFileProcess
 
     }    
     
-
+    /**
+     * Method to remove model files and directories inside model
+     * 
+     * @param int $sizeInRealitytId
+     * @param int $productid
+     * @param string $model
+     * 
+     * @return json data
+     */ 
     public function deleteModel($sizeInRealitytId, $productid, $model)
     {
         if(!AdminSizeInRealityModel::deleteData($sizeInRealitytId, $productid))
             return ['status' => 0, 'message' => 'Oops Something went wrong!'];            
-        $filePath = realpath(dirname(__FILE__).'/../..').'/ar/models/'.$model;
-        self::removeFiles($filePath);
-        return ['status' => 1, 'delete' => 1, 'message' => 'File removed Successfully.......', 'data' => null];
+//        $filePath = realpath(dirname(__FILE__).'/../..').'/ar/models/'.$model;
+//        self::removeFiles($filePath);
+//        return ['status' => 1, 'delete' => 1, 'message' => 'File removed Successfully.......', 'data' => null];
     }    
     
 } // End Of AdminFileProcess class
