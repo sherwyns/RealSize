@@ -1,16 +1,71 @@
 <!DOCTYPE html>
-<html>
-    <head><title>Size in Reality</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
-        <script src="AR.js-master/aframe/build/aframe-ar.js"></script>
-      
+<html style="height:100%">
+
+<head>
+    <title>Size in Reality</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <body>
-         
-       
+
+<body style="height:100%">
         <script src="dist/sir.bundle.js"></script>
-        <div id="close" style="position:absolute;color:white;top:0;right:0;padding:50px;"><i class="fa fa-close" style="font-size:24px;opacity:0.7;cursor:pointer;"></i></div>
-        <div id="btn" style="padding: 50px;position: absolute;bottom: 0;"> <button domain="Test" id="markerbtn" style="padding: 8px;opacity: 0.8;cursor:pointer;">Marker-based AR</button></div>   
-    </body>
+        
+    <div id='sirContentPane' style="width: 100%; height: 100%;">
+    </div>
+
+    <div id="close" style="position:absolute;color:white;top:0;right:0;padding:50px;">
+        <i class="fa fa-close" style="font-size:24px;opacity:0.7;cursor:pointer;"></i>
+    </div>
+    <div id="btn" style="padding: 50px;position: absolute;bottom: 0;">
+        <button id="markerbtn" style="padding: 8px;opacity: 0.8;cursor:pointer;" onclick='StartMarkerlessAr()'>
+            Markerless AR
+        </button>
+        <button id="markerbtn" style="padding: 8px;opacity: 0.8;cursor:pointer;" onclick='StartMarkerAr()'>
+            Marker AR
+        </button>
+    </div>
+</body>
+
+
+
+<script>
+    
+    function StartMarkerlessAr() {
+        console.log('Invoking the SIR object.');
+
+       // var sirObj = new Sir();
+    //window.sir = sirobj;
+        if (sir._isARCompatible) {
+
+            var modelName = 'raymanmodel';
+            var mtlPath = "model/Rayman3/Rayman3.mtl";
+            var objPath = "model/Rayman3/Rayman3.obj";
+
+            sir.markerlessRender('sirContentPane', modelName, objPath, mtlPath);
+        }
+        else {
+            alert('AR is not compatible in this browser.');
+        }
+    }
+
+    function StartMarkerAr() {
+        console.log('Invoking the SIR object.');
+
+
+        if (sir._isARCompatible) {
+
+            var modelName = 'raymanmodel';
+            var mtlPath = "model/Rayman3/Rayman3.mtl";
+            var objPath = "model/Rayman3/Rayman3.obj";
+
+            sir.markerRender('sirContentPane', modelName, objPath, mtlPath);
+        }
+        else {
+            alert('AR is not compatible in this browser.');
+        }
+    }
+
+
+
+</script>
+
 </html>

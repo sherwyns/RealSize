@@ -1,86 +1,136 @@
-class Sir{
-    
-    constructor(){
 
-    }      
-    render(path,file) {
-        var content:string = '';
-        content += "<a-scene id='scene' embedded artoolkit='sourceType: webcam;'>";
-        content += "<a-entity camera position='0 1.6 10'></a-entity>";
-        content += "<a-assets>";
-        content += "<a-asset-item id='car-obj' src='" + path + "/" + file + "/" + file +".obj'></a-asset-item>";
-        content += "<a-asset-item id='car-mtl' src='" + path + "/" + file + "/" + file +".mtl'></a-asset-item>";
-        content += "</a-assets>";
-        content += "<a-entity look-controls='reverseMouseDrag:true'>";
-        content += "<a-obj-model  src='#car-obj' mtl='#car-mtl' position='0 1 0' scale='0.3 0.3 0.3'>	</a-obj-model>";
-        content += "</a-entity>";		
-        content += "</a-scene>";
-        return content;
-    } 
-    
-    markerrender(path,file){
-        var content:string = '';
-        content += "<a-scene id='scene' embedded artoolkit='sourceType: webcam;'>";
-        content += "<a-assets>";
-        content += "<a-asset-item id='car-obj' src='" + path + "/" + file + "/" + file +".obj'></a-asset-item>";
-        content += "<a-asset-item id='car-mtl' src='" + path + "/" + file + "/" + file +".mtl'></a-asset-item>";
-        content += "</a-assets>";
-        content += "<a-entity look-controls='reverseMouseDrag:true'>";
-        content += "<a-obj-model  src='#car-obj' mtl='#car-mtl' position='0 0 0' scale='0.3 0.3 0.3'>	</a-obj-model>";
-        content += "</a-entity>";		
-        content += "<a-marker-camera preset='hiro' markersAreaEnabled='false'></a-marker-camera>";
-        content += "</a-scene>";
-         content += "<div id='btn' style='padding: 50px;position: absolute;bottom: 0;'> <button id='markerlessbtn' style='padding: 8px;opacity: 0.8;cursor:pointer;'>Markerless-based AR</button></div>   ";
-        return content;
+class Sir {
+
+    private _isARCompatible: boolean;
+    cameraPosition:string = "0 0 15";
+    modelPosition:string = "0 0 0";
+    modelScale:string = "0.5 0.5 0.5";
+
+
+    isARCompatible(): boolean {
+        return this._isARCompatible;
     }
 
-   
-
-    public hasUserMedia(){
-        return !!(navigator.getUserMedia);       
-    }
-
-    mobileCompat(){
-        if(this.hasUserMedia()){
-                 return true;
+    /**
+     * Used to set the value of the _isARCompatible variable based on the browser's capability to render AR models.
+     */
+    constructor() {
+        if (this.hasUserMedia()) {
+            this._isARCompatible = true;
         }
-        else{
-                return false;
+        else {
+            this._isARCompatible = false;
         }
+
     }
 
-}
+    markerlessRender(domObjectId,modelName, objUrl, mtlUrl, cameraPosition, modelPosition, modelScale) {
 
-var sirobj = new Sir();
-(<any>window).sir = sirobj;
-var path ="http://localhost/arshop6/modules/arview/ar/models/";
-var file ="Rayman3";
-document.getElementById("sircontent").innerHTML = sirobj.render(path, file);
+        var domObject = document.getElementById(domObjectId);
+
+        if(domObject === undefined){
+            console.log('SIR Log: DOM Object not found. Cannot attach the render to a non existing dom.');
+            return;
+        }
+        if (objUrl === undefined) {
+            console.log('SIR Log: No object URL passed. Cannot attach the render without object URL.');
+            return;
+        }
+
+        if (mtlUrl === undefined) {
+            console.log('SIR Log: No object material URL passed. Cannot attach the render without object material URL.');
+            return;
+        }
+
+        // ObjURL and MtlURL file check verification needs to be done.
 
 
+        if (modelName === undefined) {
+            console.log('SIR Log: No model name specified. Using the default model name - Object.');
+        }
 
+        if (cameraPosition === undefined)
+            cameraPosition = this.cameraPosition;
 
+        if (modelPosition === undefined)
+            modelPosition = this.modelPosition;
 
-window.onload = () =>
-{
-    
-    sirobj.mobileCompat();
+        if (modelScale === undefined)
+            modelScale = this.modelScale;
 
-     
-
-     var markerclick = <HTMLButtonElement>document.getElementById("markerbtn");
-     markerclick.onclick = function (){
-       document.getElementById("sircontent").innerHTML = sirobj.markerrender(path,file);
-       
-        var markerlessclick = <HTMLButtonElement>document.getElementById("markerlessbtn");
-      //  console.log(markerlessclick);
         
-        markerlessclick.onclick = function (){
-            location.reload();
-        }
-       
-       
-     } 
-     
-};
+        var content: string = '';
+        content +="<a-scene id='scene' embedded artoolkit='sourceType: webcam;'>";
+        content +="<a-entity camera position='" + this.cameraPosition + "'></a-entity>";
+        content +="<a-assets>";
+        content +="<a-asset-item id='" + modelName + "-obj' src='" + objUrl + "'></a-asset-item>";
+        content +="<a-asset-item id='" + modelName + "-mtl' src='" + mtlUrl + "'></a-asset-item>";
+        content +="</a-assets>";
+        content +="<a-entity look-controls='reverseMouseDrag:true'>";
+        content +="<a-obj-model  src='#" + modelName + "-obj' mtl='#" + modelName + "-mtl' position='" + this.modelPosition + "' scale='" + this.modelScale + "'>";
+        content +="</a-obj-model>";
+        content +="</a-entity>";
+        content +="</a-scene>";
+        domObject.innerHTML =content;
+    }
 
+    markerRender(domObjectId,modelName, objUrl, mtlUrl, modelPosition, modelScale) {
+
+        var domObject = document.getElementById(domObjectId);
+        if (domObject === undefined) {
+            console.log('SIR Log: DOM Object not found. Cannot attach the render to a non existing dom.');
+            return;
+        }
+
+        if (objUrl === undefined) {
+            console.log('SIR Log: No object URL passed. Cannot attach the render without object URL.');
+            return;
+        }
+
+        if (mtlUrl === undefined) {
+            console.log('SIR Log: No object material URL passed. Cannot attach the render without object material URL.');
+            return;
+        }
+
+        // ObjURL and MtlURL file check verification needs to be done.
+
+
+        if (modelName === undefined) {
+            console.log('SIR Log: No model name specified. Using the default model name - Object.');
+        }
+
+        if (modelPosition === undefined)
+            modelPosition = this.modelPosition;
+
+        if (modelScale === undefined)
+            modelScale = this.modelScale;
+        var content: string = '';
+        content +="<a-scene id='scene' embedded artoolkit='sourceType: webcam;'>";
+        content +="<a-assets>";
+        content +="<a-asset-item id='" + modelName + "-obj' src='" + objUrl + "'></a-asset-item>";
+        content +="<a-asset-item id='" + modelName + "-mtl' src='" + mtlUrl + "'></a-asset-item>";
+        content +="</a-assets>";
+        content +="<a-entity look-controls='reverseMouseDrag:true'>";
+        content +="<a-obj-model  src='#" + modelName + "-obj' mtl='#" + modelName + "-mtl' position='0 0 0' scale='0.3 0.3 0.3'>";
+        content +="</a-obj-model>";
+        content +="</a-entity>";
+        content +="<a-marker-camera preset='hiro' markersAreaEnabled='false'></a-marker-camera>";
+        content +="</a-scene>";
+        domObject.innerHTML =content;
+    }
+
+    hasUserMedia() {
+        return !!(navigator.getUserMedia);
+    }
+}
+console.log('Loading SIR Dependencies');
+var script = document.createElement('script');
+script.onload = function () {
+    var script1 = document.createElement('script');
+    script1.src = 'AR.js-master/aframe/build/aframe-ar.js';
+    document.head.appendChild(script1);
+};
+script.src = 'src/aframe-v0.7.0.min.js';
+document.head.appendChild(script);
+console.log('Loading SIR Dependencies over');
+(<any>window).sir = new Sir();
