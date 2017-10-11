@@ -12,7 +12,7 @@
     <div id='sirContentPane' style="width: 100%; height: 100%;">
     </div>
 
-    <div id="close" style="position:absolute;color:white;top:0;right:0;padding:50px;">
+    <div id="arclose" style="position:absolute;color:white;top:0;right:0;padding:50px;" onclick='closebtn()'>
         <i class="fa fa-close" style="font-size:24px;opacity:0.7;cursor:pointer;"></i>
     </div>
     <div id="btn" style="padding: 50px;position: absolute;bottom: 0;">
@@ -56,14 +56,18 @@
             var modelName = 'raymanmodel';
             var mtlPath = "model/Rayman3/Rayman3.mtl";
             var objPath = "model/Rayman3/Rayman3.obj";
+            var marker ='hiro';
 
-            sir.markerRender('sirContentPane', modelName, objPath, mtlPath);
+            sir.markerRender('sirContentPane', modelName, objPath, mtlPath, marker);
         }
         else {
             alert('AR is not compatible in this browser.');
         }
     }
 
+    function closebtn(){
+        sir.arclose();
+    }
 
 
 </script>

@@ -54,7 +54,7 @@ var Sir = /** @class */ (function () {
         content += "</a-scene>";
         domObject.innerHTML = content;
     };
-    Sir.prototype.markerRender = function (domObjectId, modelName, objUrl, mtlUrl, modelPosition, modelScale) {
+    Sir.prototype.markerRender = function (domObjectId, modelName, objUrl, mtlUrl, marker, modelPosition, modelScale) {
         var domObject = document.getElementById(domObjectId);
         if (domObject === undefined) {
             console.log('SIR Log: DOM Object not found. Cannot attach the render to a non existing dom.');
@@ -86,23 +86,26 @@ var Sir = /** @class */ (function () {
         content += "<a-obj-model  src='#" + modelName + "-obj' mtl='#" + modelName + "-mtl' position='0 0 0' scale='0.3 0.3 0.3'>";
         content += "</a-obj-model>";
         content += "</a-entity>";
-        content += "<a-marker-camera preset='hiro' markersAreaEnabled='false'></a-marker-camera>";
+        content += "<a-marker-camera preset='" + marker + "' markersAreaEnabled='false'></a-marker-camera>";
         content += "</a-scene>";
         domObject.innerHTML = content;
+    };
+    Sir.prototype.arclose = function () {
+        location.reload();
     };
     Sir.prototype.hasUserMedia = function () {
         return !!(navigator.getUserMedia);
     };
     return Sir;
 }());
-console.log('Loading SIR Dependencies');
-var script = document.createElement('script');
-script.onload = function () {
-    var script1 = document.createElement('script');
-    script1.src = 'AR.js-master/aframe/build/aframe-ar.js';
-    document.head.appendChild(script1);
-};
-script.src = 'src/aframe-v0.7.0.min.js';
-document.head.appendChild(script);
+// console.log('Loading SIR Dependencies');
+// var script = document.createElement('script');
+// script.onload = function () {
+//     var script1 = document.createElement('script');
+//     script1.src = 'AR.js-master/aframe/build/aframe-ar.js';
+//     document.head.appendChild(script1);
+// };
+// script.src = 'src/aframe-v0.7.0.min.js';
+// document.head.appendChild(script);
 console.log('Loading SIR Dependencies over');
 window.sir = new Sir();

@@ -74,7 +74,7 @@ class Sir {
         domObject.innerHTML =content;
     }
 
-    markerRender(domObjectId,modelName, objUrl, mtlUrl, modelPosition, modelScale) {
+    markerRender(domObjectId,modelName, objUrl, mtlUrl, marker, modelPosition, modelScale) {
 
         var domObject = document.getElementById(domObjectId);
         if (domObject === undefined) {
@@ -114,23 +114,27 @@ class Sir {
         content +="<a-obj-model  src='#" + modelName + "-obj' mtl='#" + modelName + "-mtl' position='0 0 0' scale='0.3 0.3 0.3'>";
         content +="</a-obj-model>";
         content +="</a-entity>";
-        content +="<a-marker-camera preset='hiro' markersAreaEnabled='false'></a-marker-camera>";
+        content +="<a-marker-camera preset='" + marker + "' markersAreaEnabled='false'></a-marker-camera>";
         content +="</a-scene>";
         domObject.innerHTML =content;
+    }
+
+    arclose(){
+        location.reload();
     }
 
     hasUserMedia() {
         return !!(navigator.getUserMedia);
     }
 }
-console.log('Loading SIR Dependencies');
-var script = document.createElement('script');
-script.onload = function () {
-    var script1 = document.createElement('script');
-    script1.src = 'AR.js-master/aframe/build/aframe-ar.js';
-    document.head.appendChild(script1);
-};
-script.src = 'src/aframe-v0.7.0.min.js';
-document.head.appendChild(script);
+// console.log('Loading SIR Dependencies');
+// var script = document.createElement('script');
+// script.onload = function () {
+//     var script1 = document.createElement('script');
+//     script1.src = 'AR.js-master/aframe/build/aframe-ar.js';
+//     document.head.appendChild(script1);
+// };
+// script.src = 'src/aframe-v0.7.0.min.js';
+// document.head.appendChild(script);
 console.log('Loading SIR Dependencies over');
 (<any>window).sir = new Sir();
