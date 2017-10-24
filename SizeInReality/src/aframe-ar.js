@@ -1208,8 +1208,9 @@ THREEx.ArToolkitSource.prototype.init = function(onReady){
 
 	return this
         function onSourceReady(){
-		document.body.appendChild(_this.domElement);
-
+			//Sizeinreality
+	//	document.body.appendChild(_this.domElement);
+         document.getElementById("modalContent").appendChild(_this.domElement);
 		_this.ready = true
 
 		onReady && onReady()
@@ -1397,6 +1398,7 @@ THREEx.ArToolkitSource.prototype.toggleMobileTorch = function(){
 ////////////////////////////////////////////////////////////////////////////////
 
 THREEx.ArToolkitSource.prototype.onResize = function(mirrorDomElements){
+	//Sizeinreality
 	var _this = this
 	var screenWidth = window.innerWidth
 	var screenHeight = window.innerHeight
@@ -1422,19 +1424,23 @@ THREEx.ArToolkitSource.prototype.onResize = function(mirrorDomElements){
 		// compute newWidth and set .width/.marginLeft
 		var newWidth = sourceAspect * screenHeight
 		this.domElement.style.width = newWidth+'px'
+		//this.domElement.style.width = 'inherit'
 		this.domElement.style.marginLeft = -(newWidth-screenWidth)/2+'px'
 		
 		// init style.height/.marginTop to normal value
 		this.domElement.style.height = screenHeight+'px'
+	//this.domElement.style.height = 'inherit'
 		this.domElement.style.marginTop = '0px'
 	}else{
 		// compute newHeight and set .height/.marginTop
 		var newHeight = 1 / (sourceAspect / screenWidth)
 		this.domElement.style.height = newHeight+'px'
+	  //  this.domElement.style.height = 'inherit'
 		this.domElement.style.marginTop = -(newHeight-screenHeight)/2+'px'
 		
 		// init style.width/.marginLeft to normal value
 		this.domElement.style.width = screenWidth+'px'
+	//	this.domElement.style.width = 'inherit'
 		this.domElement.style.marginLeft = '0px'
 	}
 	
@@ -1450,10 +1456,57 @@ THREEx.ArToolkitSource.prototype.onResize = function(mirrorDomElements){
 }
 
 THREEx.ArToolkitSource.prototype.copySizeTo = function(otherElement){
-	otherElement.style.width = this.domElement.style.width
-	otherElement.style.height = this.domElement.style.height	
-	otherElement.style.marginLeft = this.domElement.style.marginLeft
-	otherElement.style.marginTop = this.domElement.style.marginTop
+
+	//Sizeinreality
+	var _this = this
+	var screenWidth = window.innerWidth
+	var screenHeight = window.innerHeight
+
+	// compute sourceWidth, sourceHeight
+	if( this.domElement.nodeName === "IMG" ){
+		var sourceWidth = this.domElement.naturalWidth
+		var sourceHeight = this.domElement.naturalHeight
+	}else if( this.domElement.nodeName === "VIDEO" ){
+		var sourceWidth = this.domElement.videoWidth
+		var sourceHeight = this.domElement.videoHeight
+	}else{
+		console.assert(false)
+	}
+	// compute sourceAspect
+	var sourceAspect = sourceWidth / sourceHeight
+	// compute screenAspect
+	var screenAspect = screenWidth / screenHeight
+
+		if( screenAspect < sourceAspect ){
+		
+		// compute newWidth and set .width/.marginLeft
+		var newWidth = sourceAspect * screenHeight
+		otherElement.style.width = newWidth+'px'
+		document.getElementById("myModal").style.width = newWidth+'px'
+		otherElement.style.marginLeft = -(newWidth-screenWidth)/2+'px'
+		
+		// init style.height/.marginTop to normal value
+		otherElement.style.height = screenHeight+'px'
+		document.getElementById("myModal").style.height = screenHeight+'px'
+		otherElement.style.marginTop = '0px'
+	}else{
+		// compute newHeight and set .height/.marginTop
+		var newHeight = 1 / (sourceAspect / screenWidth)
+		otherElement.style.height = newHeight+'px'
+		document.getElementById("myModal").style.height = newHeight+'px'
+
+		otherElement.style.marginTop = -(newHeight-screenHeight)/2+'px'
+		
+		// init style.width/.marginLeft to normal value
+		otherElement.style.width = screenWidth+'px'
+		document.getElementById("myModal").style.width = screenWidth+'px'
+	    otherElement.style.marginLeft = '0px'
+	}
+	
+	// otherElement.style.width = this.domElement.style.width
+	// otherElement.style.height = this.domElement.style.height	
+	// otherElement.style.marginLeft = this.domElement.style.marginLeft
+	// otherElement.style.marginTop = this.domElement.style.marginTop
 }
 var THREEx = THREEx || {}
 
