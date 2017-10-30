@@ -1,50 +1,51 @@
 window.onload = function(){
     
     var sirScript = (function(){
-
-        //cacheData
+        //Step1: caching
+        
+        var screenWidth = $(window).width();
+        var screenHeight = $(window).height();
+        var canvas = $('canvas');
         var sizeInRealityBut = $('#sizeinreality');
         var myModalWindow = $('#myModal');
         var myModalWindowClose = $('#myModalClose');
 
+        
+        var height =  (($('#image-block').outerHeight(true) - $('#image-block').height()) + sizeInRealityBut.outerHeight(true)) * -1;
+        console.log(height);
+        $('#image-block').after(sizeInRealityBut);
+        sizeInRealityBut.css('top', height);
+        sizeInRealityBut.css('display', 'block');
+        
         //Events
         sizeInRealityBut.on('click', openSizeInReality);   
         myModalWindowClose.on('click', closeSizeInReality);
+
+        myModalWindow.css({'width': screenWidth, 'height': screenHeight});
         
+        //Step2: Private Method
         function checkCompatibility(){
-            if(!sir.mobileCompat()){
+            if(!sir.isARCompatible()){
                 sizeInRealityBut.hide();
             }   
         };
-
+        
         function openSizeInReality(){
             myModalWindow.css('display', 'block');
-            render(sizeInRealityBut.data('filepath'), sizeInRealityBut.data('file')).then(function(res){
-                setTimeout(function(){
-                    $('#arobj').contents().find('body').append(res);
-                }, 1000); 
-            }, function(errorRes){ 
-               console.log(errorRes); 
-            });
+            sir.Render({containerId: 'modalContent', objectUrl: sizeInRealityBut.data('filepath'), modelName: sizeInRealityBut.data('file')});
+            setTimeout(function(){
+                $('canvas').css('display', 'block');
+            }, 2000);             
         };
 
-        function render(filepath, file){
-            return new Promise(function(resolve, reject) {
-                var render = sir.render(filepath, file);
-                if(render){
-                    $("#modalContent").html("<iframe id='arobj' src='http://localhost/sir/index.html' style='width:100%;height:100%;'></iframe>");   
-                    resolve(render)
-                }  else {
-                    reject(false)
-                }
-            });
-        };
 
         function closeSizeInReality(){
             myModalWindow.css('display', 'none');
-            window.location.reload(true);        
+            window.location.reload(true); 
+//            sir.closeArView('modalContent');
         }
 
+        //Step3: Public Method
         return {
             checkCompatibility: checkCompatibility
         }
@@ -54,6 +55,10 @@ window.onload = function(){
     sirScript.checkCompatibility();
     
 };
+
+
+
+
 
 
 

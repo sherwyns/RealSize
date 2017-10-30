@@ -6,21 +6,16 @@ class AdminSizeInRealityController extends ModuleAdminController
     /**
      * @brief Constructor
      * Method to initialise the back office separate page
-     * 
      */  
     public function __construct()
     {
        $this->bootstrap = true;
-       $this->lang = (!isset($this->context->cookie) || !is_object($this->context->cookie)) ? intval(Configuration::get('PS_LANG_DEFAULT')) : intval($this->context->cookie->id_lang);
+       $this->lang = (!isset($this->context->cookie) || !is_object($this->context->cookie)) ? (int)Configuration::get('PS_LANG_DEFAULT') : (int)$this->context->cookie->id_lang;
        $this->path =  _PS_MODULE_DIR_.$this->module.'/';
        parent::__construct();
     }
-    
-    
-
     /**
      * Method allow to include css and js on Admin Arview page
-     * 
      */     
     public function initContent()
     {
@@ -40,20 +35,18 @@ class AdminSizeInRealityController extends ModuleAdminController
 
         $this->meta_title = $this->l('Size In Reality');
         parent::initContent();
-    } 
-
+    }
+    public function display() {
+        parent::display();
+    }    
     /**
      * Method to render content after click Arview button under admin menu
-     * 
      * @access public
      * @return void
-     *  
      */     
     public function renderlist()
     {
         $token = AdminSizeInRealityModel::getToken();
-        
-       // $token = Tools::getAdminTokenLite('AdminSizeInReality');
         $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';     
         $url = $protocol.$_SERVER['HTTP_HOST']._MODULE_DIR_.'sizeinreality/getData.php';
         $getAllProducts = AdminSizeInRealityModel::getAllProducts();
@@ -203,6 +196,5 @@ class AdminSizeInRealityController extends ModuleAdminController
         $tpl->assign('token', $token);
         return $tpl->fetch();               
     }
-
-    
-}// End Of AdminArViewController class
+}
+// End Of AdminArViewController class

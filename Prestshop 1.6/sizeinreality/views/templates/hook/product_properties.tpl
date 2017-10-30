@@ -36,7 +36,7 @@ padding: 8px 20px;
 <div id="product-images" class="panel product-tab">
     <div class="panel-heading tab"> Size In Reality </div>
     <input type="hidden" name="getUrl" id="getUrl" data-id="{$id_product}" value="{$url}">
-    <input type="text" id="sirToken" value="{$token}">
+    <input type="hidden" id="sirToken" value="{$token}">
     <div class="row">
         <div class="form-group">
             <label class="control-label col-lg-3 file_upload_label">

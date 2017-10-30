@@ -1,1 +1,1 @@
-zzz{$test}zzz
+zzz{$test|escape:'htmlall':'UTF-8'}zzz

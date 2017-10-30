@@ -220,7 +220,6 @@ AdminSizeInReality.prototype = {
                 if(res.status == 1){
                     var data = res.data;
                     if(data != null){
-                        console.log(self.sizeInRealityTable); 
                         if(self.page == 'sizeinreality'){
                             //self.sizeInRealityTable.ajax.reload();
                             self.resetForm();
@@ -266,10 +265,13 @@ AdminSizeInReality.prototype = {
         $('#drawtable').html(table);
     },
     resetForm: function(){
+        var self = this;
         $('#product').val('').selectpicker('refresh');
-        //$('#product').val('').trigger('change');
-        $('#fileInput').wrap('<form>').closest('form').get(0).reset();
-        $('#fileInput').unwrap();
+        self.file = null;
+        var file = $('#fileInput');
+        file.wrap('<form>').closest('form').get(0).reset();
+        file.unwrap();
+        $('.fileInfo').html('');
         $('.errorTxt').html('');
     },
     reloadWindow: function(product){
@@ -297,15 +299,14 @@ AdminSizeInReality.prototype = {
         }        
     },
     fieldRequired: function(name, selector) {
-     $(selector).addClass('error');
-     var sel = name+'Info';
-     $('.'+sel).addClass('errorTxt').text(name.toUpperCase() + ' field is Required');
-         
+        $(selector).addClass('error');
+        var sel = name+'Info';
+        $('.'+sel).addClass('errorTxt').text(name.toUpperCase() + ' field is Required');
     },
     clearError: function(name, selector) {
-     $(selector).removeClass('error');
-     var sel = name+'Info';
-     $('.'+sel).removeClass('errorTxt').text('');        
+        $(selector).removeClass('error');
+        var sel = name+'Info';
+        $('.'+sel).removeClass('errorTxt').text('');        
     },
     selCompressFile: function(){
         var self = this;

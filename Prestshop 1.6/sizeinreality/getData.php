@@ -17,7 +17,7 @@ if(Tools::getValue('sizeInRealitytId')){
     $sizeInRealitytId = (int)Tools::getValue('sizeInRealitytId');
     $productid = (int)Tools::getValue('productid');
     $model = (string)Tools::getValue('model');
-    echo json_encode(AdminFileProcess::deleteModel($sizeInRealitytId, $productid, $model));
+    echo json_encode(AdminFileProcess::deleteModel($sizeInRealitytId, $model));
 } elseif(isset($_FILES['arfile']['name'])){
     $fileName = $_FILES['arfile']['name'];
     $fileSize = $_FILES['arfile']['size'];
@@ -25,19 +25,19 @@ if(Tools::getValue('sizeInRealitytId')){
     $fileType = $_FILES['arfile']['type'];
     $id_product = Tools::getValue('productid');
     $productId = AdminSizeinrealityModel::checkProduct($id_product);
-    if(count($productId) > 0){
-        echo json_encode(['status' => 0, 'message' => 'Select Different Product']); 
-    } else if(count($productId) == 0){  
-        echo json_encode(AdminFileProcess::processFile($fileName, $fileTmpName, $fileType, $id_product));
+    if(!empty($productId)){
+        echo json_encode(array('status' => 0, 'message' => 'Select Different Product')); 
+    } else if(empty($productId)){  
+        echo json_encode(AdminFileProcess::processFile($fileName, $fileTmpName, $id_product));
     }
-} else if(!empty($_POST['column0']) || !empty($_POST['column1']) ){
-    AdminSizeinrealityModel::getData($_POST['column0'], $_POST['column1']);
+} else if(!empty(Tools::getValue('column0')) || !empty(Tools::getValue('column1')) ){
+    AdminSizeinrealityModel::getData(Tools::getValue('column0'), Tools::getValue('column1'));
 } else if(Tools::getValue('buttonSettings')) {
-    $data = ['buttontext' => Tools::getValue('buttontext'), 'buttonfontsize' => Tools::getValue('buttonfontsize'),
+    $data = array('buttontext' => Tools::getValue('buttontext'), 'buttonfontsize' => Tools::getValue('buttonfontsize'),
             'buttonfontcolor' => Tools::getValue('buttonfontcolor'), 'buttonbackgroundcolor' => Tools::getValue('buttonbackgroundcolor'),
             'buttonbordercolor' => Tools::getValue('buttonbordercolor'), 'buttonverticalsize' => Tools::getValue('buttonverticalsize'),
             'buttonhorizontalsize' => Tools::getValue('buttonhorizontalsize'), 'buttonbordersize' => Tools::getValue('buttonbordersize'),
-            'buttonborderradius' => Tools::getValue('buttonborderradius'), 'buttonfontweight' => Tools::getValue('buttonfontweight')];
+            'buttonborderradius' => Tools::getValue('buttonborderradius'), 'buttonfontweight' => Tools::getValue('buttonfontweight'));
     echo AdminSizeinrealityModel::saveButtonSettings($data);
 } else {
     AdminSizeinrealityModel::getData();

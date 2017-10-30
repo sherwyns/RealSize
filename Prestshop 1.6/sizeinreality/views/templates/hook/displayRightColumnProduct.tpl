@@ -1,6 +1,7 @@
 <!-- Ar Button -->
     <br/>
-    {$btn}
+    {*{$btn}*}
+    {$icon}
     <br/>
 <!-- /Ar Button -->
 <!-- The Modal -->
